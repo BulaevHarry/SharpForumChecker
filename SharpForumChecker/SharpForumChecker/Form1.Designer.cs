@@ -39,12 +39,10 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonRemoveWord = new System.Windows.Forms.Button();
-            this.buttonAddWord = new System.Windows.Forms.Button();
-            this.listBoxWords = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkedListBoxSections = new System.Windows.Forms.CheckedListBox();
             this.timerSearch = new System.Windows.Forms.Timer(this.components);
+            this.textBoxKeyWords = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,7 +59,7 @@
             this.buttonSearch.TabIndex = 0;
             this.buttonSearch.Text = "Искать";
             this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // listBox1
             // 
@@ -94,10 +92,11 @@
             // 
             this.progressBarSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBarSearch.Location = new System.Drawing.Point(3, 357);
-            this.progressBarSearch.Maximum = 10;
+            this.progressBarSearch.Maximum = 60;
             this.progressBarSearch.Name = "progressBarSearch";
             this.progressBarSearch.Size = new System.Drawing.Size(192, 23);
             this.progressBarSearch.Step = 1;
+            this.progressBarSearch.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarSearch.TabIndex = 3;
             // 
             // groupBox3
@@ -131,7 +130,6 @@
             this.checkBox2.TabIndex = 2;
             this.checkBox2.Text = "Открыть в браузере";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -142,47 +140,16 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Звук";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.buttonRemoveWord);
-            this.groupBox2.Controls.Add(this.buttonAddWord);
-            this.groupBox2.Controls.Add(this.listBoxWords);
+            this.groupBox2.Controls.Add(this.textBoxKeyWords);
             this.groupBox2.Location = new System.Drawing.Point(3, 135);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(192, 155);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ключевые слова";
-            // 
-            // buttonRemoveWord
-            // 
-            this.buttonRemoveWord.Location = new System.Drawing.Point(100, 121);
-            this.buttonRemoveWord.Name = "buttonRemoveWord";
-            this.buttonRemoveWord.Size = new System.Drawing.Size(85, 23);
-            this.buttonRemoveWord.TabIndex = 2;
-            this.buttonRemoveWord.Text = "Удалить";
-            this.buttonRemoveWord.UseVisualStyleBackColor = true;
-            this.buttonRemoveWord.Click += new System.EventHandler(this.buttonRemoveWord_Click);
-            // 
-            // buttonAddWord
-            // 
-            this.buttonAddWord.Location = new System.Drawing.Point(9, 121);
-            this.buttonAddWord.Name = "buttonAddWord";
-            this.buttonAddWord.Size = new System.Drawing.Size(85, 23);
-            this.buttonAddWord.TabIndex = 1;
-            this.buttonAddWord.Text = "Добавить";
-            this.buttonAddWord.UseVisualStyleBackColor = true;
-            this.buttonAddWord.Click += new System.EventHandler(this.buttonAddWord_Click);
-            // 
-            // listBoxWords
-            // 
-            this.listBoxWords.FormattingEnabled = true;
-            this.listBoxWords.Location = new System.Drawing.Point(8, 19);
-            this.listBoxWords.Name = "listBoxWords";
-            this.listBoxWords.Size = new System.Drawing.Size(178, 95);
-            this.listBoxWords.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -212,12 +179,19 @@
             this.checkedListBoxSections.Name = "checkedListBoxSections";
             this.checkedListBoxSections.Size = new System.Drawing.Size(185, 105);
             this.checkedListBoxSections.TabIndex = 1;
-            this.checkedListBoxSections.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // timerSearch
             // 
-            this.timerSearch.Interval = 500;
-            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
+            this.timerSearch.Interval = 1000;
+            // 
+            // textBoxKeyWords
+            // 
+            this.textBoxKeyWords.Location = new System.Drawing.Point(6, 19);
+            this.textBoxKeyWords.Multiline = true;
+            this.textBoxKeyWords.Name = "textBoxKeyWords";
+            this.textBoxKeyWords.Size = new System.Drawing.Size(180, 130);
+            this.textBoxKeyWords.TabIndex = 0;
+            this.textBoxKeyWords.Text = "Продам";
             // 
             // Form1
             // 
@@ -234,6 +208,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -252,10 +227,8 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button buttonRemoveWord;
-        private System.Windows.Forms.Button buttonAddWord;
-        private System.Windows.Forms.ListBox listBoxWords;
         private System.Windows.Forms.Timer timerSearch;
+        private System.Windows.Forms.TextBox textBoxKeyWords;
     }
 }
 

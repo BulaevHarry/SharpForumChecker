@@ -1,0 +1,12 @@
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.csprojResolveAssemblyReference.cache
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Form1.resources
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Properties.Resources.resources
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.csproj.GenerateResource.Cache
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\bin\Debug\SharpForumChecker.exe
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\bin\Debug\SharpForumChecker.pdb
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.exe
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.pdb
+C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.FormAddDlg.resources
