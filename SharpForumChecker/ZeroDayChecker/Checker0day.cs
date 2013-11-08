@@ -82,7 +82,7 @@ namespace ZeroDayChecker
 
                             if (!_blackList.Contains(linkNubmer)) //якшо ще не реагував на такий номер топіка
                             {
-                                _founded.Append(span.InnerText + "¼" + "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer + "|");
+                                _founded.Append(span.InnerText + "¼" + "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer + "½");
                                 _checkResult = true;
                                 _blackList += linkNubmer; //реагую і добавляю в блек ліст
                             }

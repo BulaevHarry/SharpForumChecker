@@ -127,6 +127,10 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OverlockersChecker\OverlockersChecker.csproj">
+      <Project>{9DB6637B-5D61-41A1-8A38-BF5621696C03}</Project>
+      <Name>OverlockersChecker</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZeroDayChecker\ZeroDayChecker.csproj">
       <Project>{A91A06B8-4DEF-494C-9758-C00C5C72E954}</Project>
       <Name>ZeroDayChecker</Name>
