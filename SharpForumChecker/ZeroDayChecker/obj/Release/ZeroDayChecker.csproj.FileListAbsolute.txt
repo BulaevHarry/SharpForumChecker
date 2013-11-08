@@ -14,3 +14,5 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChe
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Release\ZeroDayChecker.csprojResolveAssemblyReference.cache
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Release\ZeroDayChecker.dll
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Release\ZeroDayChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Release\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Release\SiteMonitorInterface.pdb

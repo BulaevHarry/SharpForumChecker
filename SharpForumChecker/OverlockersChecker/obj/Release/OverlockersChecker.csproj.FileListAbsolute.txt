@@ -6,3 +6,5 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\Overlocker
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Release\OverlockersChecker.csprojResolveAssemblyReference.cache
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Release\OverlockersChecker.dll
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Release\OverlockersChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Release\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Release\SiteMonitorInterface.pdb

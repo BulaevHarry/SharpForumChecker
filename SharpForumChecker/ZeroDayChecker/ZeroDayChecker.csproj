@@ -46,6 +46,12 @@
     <Compile Include="Checker0day.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SiteMonitorInterface\SiteMonitorInterface.csproj">
+      <Project>{626EEBC8-2A25-417B-B3D9-5B54ED08BF28}</Project>
+      <Name>SiteMonitorInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

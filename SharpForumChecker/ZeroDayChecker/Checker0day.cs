@@ -3,59 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
+using SiteMonitorInterface;
 
 namespace ZeroDayChecker
 {
-    public class Checker0day
+    [Serializable] // обов'язковий атрибут, щоб сутність сайту зберігалась в файл
+    public class Checker0day : SiteInterface
     {
-        private HtmlDocument _htmlDoc;
-        private HtmlWeb _htmlWeb;
+        public string SiteName { get; set; }
+        public string Filter { get; set; }
+        public string SiteUri { get; set; }
+        public Dictionary<string, string> TopicDictionary { get; set; }
 
-        private bool _checkResult;
-        public bool MyProperty
-        {
-            get { return _checkResult; }
-        }
-        
-        private StringBuilder _founded;
-        public string Founded
-        {
-            get { var result = _founded.ToString(); _founded.Clear(); return result; }
-        }
-        
         private string _blackList;
 
         public Checker0day()
         {
-            _checkResult = false;
-            _founded = new StringBuilder();
             _blackList = "";
+        }
 
-            _htmlDoc = new HtmlAgilityPack.HtmlDocument();
-            _htmlWeb = new HtmlWeb
+        public Dictionary<string, string> Checker()
+        {
+            HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
+            HtmlWeb      _htmlWeb = new HtmlWeb
             {
                 AutoDetectEncoding = false,
                 OverrideEncoding = System.Text.ASCIIEncoding.GetEncoding(1251),
             };
-        }
 
-
-        public void Check(string Keywords, string ThreadLink)
-        {
-            _checkResult = false;
-            List<string> _keywords = new List<string>(Keywords.Split(','));
+            TopicDictionary = new Dictionary<string, string>();
+            List<string> _keywords = new List<string>(Filter.Split(','));
 
             try
             {
-                _htmlDoc = _htmlWeb.Load(ThreadLink);
+                _htmlDoc = _htmlWeb.Load(SiteUri);
             }
             catch (System.Exception ex)
             {
-                return; //TODO: убрать try-catch хай Жека єбеться з проблемами сєті
+                return TopicDictionary; 
             }
 
             var spanList = _htmlDoc.DocumentNode.SelectNodes("//tr/td/div/span");
-            foreach (var span in spanList)
+            foreach (HtmlNode span in spanList)
             {
                 if (span.InnerHtml.Contains("Тема создана:"))
                 {
@@ -82,15 +71,14 @@ namespace ZeroDayChecker
 
                             if (!_blackList.Contains(linkNubmer)) //якшо ще не реагував на такий номер топіка
                             {
-                                _founded.Append(span.InnerText + "¼" + "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer + "½");
-                                _checkResult = true;
+                                TopicDictionary[span.InnerText] = "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer;
                                 _blackList += linkNubmer; //реагую і добавляю в блек ліст
                             }
                         }
                     }
                 }
             }
+            return TopicDictionary;
         }
-
     }
 }
