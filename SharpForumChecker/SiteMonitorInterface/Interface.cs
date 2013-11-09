@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SiteMonitorInterface
 {
+    // rename to ISiteInterface
     public interface SiteInterface
     {
         string SiteName { get; set; } // site Name
