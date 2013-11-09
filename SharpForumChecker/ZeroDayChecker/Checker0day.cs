@@ -7,7 +7,7 @@ using SiteMonitorInterface;
 
 namespace ZeroDayChecker
 {
-    [Serializable] // обов'язковий атрибут, щоб сутність сайту зберігалась в файл
+    [Serializable] 
     public class Checker0day : ISiteInterface
     {
         public string SiteName { get; set; }

@@ -39,10 +39,10 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxKeyWords = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkedListBoxSections = new System.Windows.Forms.CheckedListBox();
             this.timerSearch = new System.Windows.Forms.Timer(this.components);
-            this.textBoxKeyWords = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -151,6 +151,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ключевые слова";
             // 
+            // textBoxKeyWords
+            // 
+            this.textBoxKeyWords.Location = new System.Drawing.Point(6, 19);
+            this.textBoxKeyWords.Multiline = true;
+            this.textBoxKeyWords.Name = "textBoxKeyWords";
+            this.textBoxKeyWords.Size = new System.Drawing.Size(180, 130);
+            this.textBoxKeyWords.TabIndex = 0;
+            this.textBoxKeyWords.Text = "Продам";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkedListBoxSections);
@@ -184,15 +193,6 @@
             // 
             this.timerSearch.Interval = 1000;
             // 
-            // textBoxKeyWords
-            // 
-            this.textBoxKeyWords.Location = new System.Drawing.Point(6, 19);
-            this.textBoxKeyWords.Multiline = true;
-            this.textBoxKeyWords.Name = "textBoxKeyWords";
-            this.textBoxKeyWords.Size = new System.Drawing.Size(180, 130);
-            this.textBoxKeyWords.TabIndex = 0;
-            this.textBoxKeyWords.Text = "Продам";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +204,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Монитор барахолки нулевого дня";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

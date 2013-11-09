@@ -3,100 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
+using SiteMonitorInterface;
+using System.Web;
 
 namespace OverlockersChecker
 {
-    public class CheckerOverlockers
+    [Serializable]
+    public class CheckerOverlockers : ISiteInterface
     {
-        private HtmlDocument _htmlDoc;
-        private HtmlWeb _htmlWeb;
+        public string SiteName { get; set; }
+        public string Filter { get; set; }
+        public string SiteUri { get; set; }
+        public Dictionary<string, string> TopicDictionary { get; set; }
 
-        private bool _checkResult;
-        public bool MyProperty
-        {
-            get { return _checkResult; }
-        }
-        
-        private StringBuilder _founded;
-        public string Founded
-        {
-            get { var result = _founded.ToString(); _founded.Clear(); return result; }
-        }
-        
         private string _blackList;
 
         public CheckerOverlockers()
         {
-            _checkResult = false;
-            _founded = new StringBuilder();
             _blackList = "";
-
-            _htmlDoc = new HtmlAgilityPack.HtmlDocument();
-            _htmlWeb = new HtmlWeb
-            {
-                //AutoDetectEncoding = false,
-                //OverrideEncoding = System.Text.UnicodeEncoding.Unicode,
-            };
         }
 
-
-        public void Check(string Keywords, string ThreadLink)
+        public Dictionary<string, string> Checker()
         {
-            _checkResult = false;
-            List<string> _keywords = new List<string>(Keywords.Split(','));
+            HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
+            HtmlWeb _htmlWeb = new HtmlWeb();
+
+            TopicDictionary = new Dictionary<string, string>();
+            List<string> _keywords = new List<string>(Filter.Split(','));
 
             try
             {
-                _htmlDoc = _htmlWeb.Load(ThreadLink);
+                _htmlDoc = _htmlWeb.Load(SiteUri);
             }
             catch (System.Exception ex)
             {
-                return; //TODO: убрать try-catch хай Жека єбеться з проблемами сєті
+                return TopicDictionary; 
             }
 
             var aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td[@class='row1']/a");
             foreach (var a in aList)
             {
-                _founded.Append(a.InnerText + "½");
+                bool keyw = false;
+                foreach (string str in _keywords)
+                {
+                    if (a.InnerText.Contains(str))
+                    {
+                        keyw = true;
+                    }
+                }
+                if (keyw)
+                {
+                    string linkName = a.Attributes["href"].Value;
+                    linkName.Replace("amp;","");
+                    if (!_blackList.Contains(linkName))
+                    {
+                        TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkName;
+                        _blackList += linkName;
+                    }
+                    
+                }
+                
             }
-
-//             var spanList = _htmlDoc.DocumentNode.SelectNodes("//tr/td/div/span");
-//             foreach (var span in spanList)
-//             {
-//                 if (span.InnerHtml.Contains("Тема создана:"))
-//                 {
-//                     bool keyw = false;
-//                     foreach (string str in _keywords)
-//                     {
-//                         if (span.InnerText.Contains(str))
-//                         {
-//                             keyw = true;
-//                         }
-//                     }
-//                     if (keyw)
-//                     {
-//                         var aList = span.ChildNodes.Where(x => x.Name == "a"); //витягую номер топіка
-//                         foreach (var a in aList)
-//                         {
-//                             string temp_str = a.Attributes["href"].Value; //тут якась не дуже робоча ссилка в кінці якої наш номер
-//                             string linkNubmer = "";
-// 
-//                             for (int ii = temp_str.LastIndexOf('=') + 1; ii < temp_str.Length; ii++)
-//                             {
-//                                 linkNubmer += temp_str[ii].ToString(); //а тепер в лінкНамбер наш номер топіка
-//                             }
-// 
-//                             if (!_blackList.Contains(linkNubmer)) //якшо ще не реагував на такий номер топіка
-//                             {
-//                                 _founded.Append(span.InnerText + "¼" + "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer + "|");
-//                                 _checkResult = true;
-//                                 _blackList += linkNubmer; //реагую і добавляю в блек ліст
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
+            return TopicDictionary;
         }
-
+        
     }
 }

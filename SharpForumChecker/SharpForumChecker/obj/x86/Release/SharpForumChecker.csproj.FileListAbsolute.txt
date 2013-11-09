@@ -24,7 +24,7 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForum
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Release\SharpForumChecker.Form1.resources
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Release\SharpForumChecker.Properties.Resources.resources
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Release\SharpForumChecker.csproj.GenerateResource.Cache
-C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.dll
-C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.pdb
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\SiteMonitorInterface.dll
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.pdb
