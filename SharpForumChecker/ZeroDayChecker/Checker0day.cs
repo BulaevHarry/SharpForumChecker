@@ -48,10 +48,11 @@ namespace ZeroDayChecker
             {
                 if (span.InnerHtml.Contains("Тема создана:"))
                 {
+                    string topicText = span.InnerText.Replace("&amp;","&"); 
                     bool keyw = false;
                     foreach (string str in _keywords)
                     {
-                        if (span.InnerText.Contains(str))
+                        if (topicText.Contains(str))
                         {
                             keyw = true;
                         }
@@ -71,7 +72,7 @@ namespace ZeroDayChecker
 
                             if (!_blackList.Contains(linkNubmer)) //якшо ще не реагував на такий номер топіка
                             {
-                                TopicDictionary[span.InnerText] = "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer;
+                                TopicDictionary[topicText] = "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer;
                                 _blackList += linkNubmer; //реагую і добавляю в блек ліст
                             }
                         }

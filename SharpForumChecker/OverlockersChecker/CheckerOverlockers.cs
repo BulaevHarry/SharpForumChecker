@@ -54,11 +54,11 @@ namespace OverlockersChecker
                 if (keyw)
                 {
                     string linkName = a.Attributes["href"].Value;
-                    linkName.Replace("amp;","");
-                    if (!_blackList.Contains(linkName))
+                    string linkNameFixed = linkName.Replace("amp;","");
+                    if (!_blackList.Contains(linkNameFixed))
                     {
-                        TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkName;
-                        _blackList += linkName;
+                        TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkNameFixed;
+                        _blackList += linkNameFixed;
                     }
                     
                 }

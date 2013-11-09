@@ -74,5 +74,10 @@ namespace SharpForumChecker
 
             string useless = Console.ReadLine();
         }
+
+        private void textBoxKeyWords_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

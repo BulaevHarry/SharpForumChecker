@@ -159,6 +159,7 @@
             this.textBoxKeyWords.Size = new System.Drawing.Size(180, 130);
             this.textBoxKeyWords.TabIndex = 0;
             this.textBoxKeyWords.Text = "Продам";
+            this.textBoxKeyWords.TextChanged += new System.EventHandler(this.textBoxKeyWords_TextChanged);
             // 
             // groupBox1
             // 
