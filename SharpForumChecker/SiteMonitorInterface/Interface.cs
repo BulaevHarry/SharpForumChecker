@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SiteMonitorInterface
 {
     // rename to ISiteInterface
-    public interface SiteInterface
+    public interface ISiteInterface
     {
         string SiteName { get; set; } // site Name
         string Filter { get; set; } // key Words
@@ -17,10 +17,10 @@ namespace SiteMonitorInterface
         Dictionary<string, string> Checker(); // for async threds --- у кожного класа сайта своя реалізація
     }
 
-    // допоміжниій клас для зберігання і відкривання списку сутністей всіх сайтів (зберігаються )
+    // допоміжниій клас для зберігання і відкривання списку сутністей всіх сайтів (зберігаються)
     public static class SitesIo
     {
-        public static void SaveToBin(List<SiteInterface> siteList)
+        public static void SaveToBin(List<ISiteInterface> siteList)
         {
             FileStream fs = new FileStream("sites.dat", FileMode.Create);
 
@@ -40,25 +40,25 @@ namespace SiteMonitorInterface
             }
         }
 
-        public static void SaveToXml(List<SiteInterface> sitelList)
+        public static void SaveToXml(List<ISiteInterface> sitelList)
         {
             // think about XML... for what? o_0
         }
 
-        public static List<SiteInterface> OpenBin()
+        public static List<ISiteInterface> OpenBin()
         {
-            List<SiteInterface> sites;
+            List<ISiteInterface> sites;
             using (FileStream fs = new FileStream("sites.dat", FileMode.Open))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                sites = (List<SiteInterface>)formatter.Deserialize(fs);
+                sites = (List<ISiteInterface>)formatter.Deserialize(fs);
             }
             return sites;
         }
 
-        public static List<SiteInterface> OpenXml()
+        public static List<ISiteInterface> OpenXml()
         {
-            return new List<SiteInterface>();
+            return new List<ISiteInterface>();
         }
 
     }

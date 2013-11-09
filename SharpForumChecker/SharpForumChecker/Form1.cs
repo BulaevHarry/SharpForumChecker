@@ -22,7 +22,7 @@ namespace SharpForumChecker
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            List<SiteInterface> siteList = new List<SiteInterface>(); // список сайтів
+            List<ISiteInterface> siteList = new List<ISiteInterface>(); // список сайтів
 
 
             //створили один сайт -- 0day
@@ -67,7 +67,7 @@ namespace SharpForumChecker
             Console.WriteLine("--------------------------------------------------------------------");
 
             // відкрили прогу і прочитали з файлу
-            List<SiteInterface> sites = SitesIo.OpenBin();
+            List<ISiteInterface> sites = SitesIo.OpenBin();
             // вивели
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (var site in sites)
