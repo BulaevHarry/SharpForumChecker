@@ -1,0 +1,10 @@
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\ZeroDayChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\ZeroDayChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Debug\ZeroDayChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Debug\ZeroDayChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\ZeroDayChecker\obj\Debug\ZeroDayChecker.csprojResolveAssemblyReference.cache

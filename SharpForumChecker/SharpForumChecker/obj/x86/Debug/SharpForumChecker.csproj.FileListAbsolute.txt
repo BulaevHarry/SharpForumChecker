@@ -10,3 +10,23 @@ C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpFo
 C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.exe
 C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.pdb
 C:\Users\Asazeus\Documents\Visual Studio 2010\Projects\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.FormAddDlg.resources
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.exe
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\SharpForumChecker.exe
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\SharpForumChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\AukroChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\OverlockersChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\ZeroDayChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\AukroChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\OverlockersChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\ZeroDayChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.csprojResolveAssemblyReference.cache
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.AddSite.resources
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Form1.resources
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Properties.Resources.resources
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.csproj.GenerateResource.Cache

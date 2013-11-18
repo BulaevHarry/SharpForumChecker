@@ -1,0 +1,10 @@
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\OverlockersChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\OverlockersChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Debug\OverlockersChecker.csprojResolveAssemblyReference.cache
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Debug\OverlockersChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\OverlockersChecker\obj\Debug\OverlockersChecker.pdb

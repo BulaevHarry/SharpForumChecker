@@ -47,11 +47,20 @@ namespace SiteMonitorInterface
         public static List<ISiteInterface> OpenBin()
         {
             List<ISiteInterface> sites;
-            using (FileStream fs = new FileStream("sites.dat", FileMode.Open))
+
+            try
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                sites = (List<ISiteInterface>)formatter.Deserialize(fs);
+                using (FileStream fs = new FileStream("sites.dat", FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    sites = (List<ISiteInterface>)formatter.Deserialize(fs);
+                }
             }
+            catch (System.Exception ex)
+            {
+                sites = new List<ISiteInterface>();
+            };
+            
             return sites;
         }
 

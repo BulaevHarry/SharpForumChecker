@@ -15,7 +15,6 @@ namespace OverlockersChecker
         public string Filter { get; set; }
         public string SiteUri { get; set; }
         public Dictionary<string, string> TopicDictionary { get; set; }
-
         private string _blackList;
 
         public CheckerOverlockers()
@@ -54,7 +53,7 @@ namespace OverlockersChecker
                 if (keyw)
                 {
                     string linkName = a.Attributes["href"].Value;
-                    string linkNameFixed = linkName.Replace("amp;","");
+                    string linkNameFixed = linkName.Replace("&amp;", "&");
                     if (!_blackList.Contains(linkNameFixed))
                     {
                         TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkNameFixed;

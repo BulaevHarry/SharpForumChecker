@@ -1,0 +1,10 @@
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\obj\Release\AukroChecker.csprojResolveAssemblyReference.cache
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\AukroChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\AukroChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\bin\Release\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\obj\Release\AukroChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\AukroChecker\obj\Release\AukroChecker.pdb

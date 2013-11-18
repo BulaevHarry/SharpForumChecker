@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddSite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSite.Designer.cs">
+      <DependentUpon>AddSite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddSite.resx">
+      <DependentUpon>AddSite.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +137,10 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AukroChecker\AukroChecker.csproj">
+      <Project>{25D3E225-833B-4CBE-9CD2-22ACF7F91A4B}</Project>
+      <Name>AukroChecker</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OverlockersChecker\OverlockersChecker.csproj">
       <Project>{9DB6637B-5D61-41A1-8A38-BF5621696C03}</Project>
       <Name>OverlockersChecker</Name>

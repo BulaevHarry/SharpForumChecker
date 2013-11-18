@@ -1,0 +1,4 @@
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\bin\Debug\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\bin\Debug\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\obj\Debug\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\obj\Debug\SiteMonitorInterface.pdb

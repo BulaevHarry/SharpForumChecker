@@ -28,3 +28,6 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForum
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\SiteMonitorInterface.pdb
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.dll
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\OverlockersChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\AukroChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\bin\Release\AukroChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Release\SharpForumChecker.AddSite.resources
