@@ -11,49 +11,59 @@ using SiteMonitorInterface;
 using ZeroDayChecker;
 using OverlockersChecker;
 using AukroChecker;
+using System.IO;
 
 namespace SharpForumChecker
 {
     public partial class Form1 : Form
     {
         public List<ISiteInterface> siteList;
+        private Int16 UpdInterval;
+        private Int16 UpdRandom;
+        private Int16 UpdCounter;
+        private Random rand;
 
         public Form1()
         {
             InitializeComponent();
             siteList = new List<ISiteInterface>();
+            rand = new Random();
+
+            UpdInterval = 0;
+            UpdRandom = 0;
+            UpdCounter = 0;
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void performCheck()
         {
             toolStripProgress.PerformStep();
 
-//             Checker0day Zday = new Checker0day();
-//             Zday.SiteName = "0day Авто Мото";
-//             Zday.Filter = textBoxKeyWords.Text;
-//             Zday.SiteUri = "http://forum.0day.kiev.ua/index.php?showforum=302";
-//             siteList.Add(Zday);
+            //             Checker0day Zday = new Checker0day();
+            //             Zday.SiteName = "0day Авто Мото";
+            //             Zday.Filter = textBoxKeyWords.Text;
+            //             Zday.SiteUri = "http://forum.0day.kiev.ua/index.php?showforum=302";
+            //             siteList.Add(Zday);
 
-//             CheckerOverlockers OvLck = new CheckerOverlockers();
-//             OvLck.SiteName = "Overclockers";
-//             OvLck.Filter = textBoxKeyWords.Text;
-//             OvLck.SiteUri = "http://forum.overclockers.ua/viewforum.php?f=26";
-//             siteList.Add(OvLck);
+            //             CheckerOverlockers OvLck = new CheckerOverlockers();
+            //             OvLck.SiteName = "Overclockers";
+            //             OvLck.Filter = textBoxKeyWords.Text;
+            //             OvLck.SiteUri = "http://forum.overclockers.ua/viewforum.php?f=26";
+            //             siteList.Add(OvLck);
 
-//             CheckerAukro OvLck = new CheckerAukro();
-//             OvLck.SiteName = "Aukro";
-//             OvLck.Filter = textBoxKeyWords.Text;
-//             OvLck.SiteUri = "http://aukro.ua/listing/listing.php?string=телефон+нокиа&search_scope=все+разделы";
-//             siteList.Add(OvLck);
+            //             CheckerAukro OvLck = new CheckerAukro();
+            //             OvLck.SiteName = "Aukro";
+            //             OvLck.Filter = textBoxKeyWords.Text;
+            //             OvLck.SiteUri = "http://aukro.ua/listing/listing.php?string=телефон+нокиа&search_scope=все+разделы";
+            //             siteList.Add(OvLck);
 
             //siteList[0].Checker();
 
-            Task<Dictionary<string, string>>[] tasks = new Task<Dictionary<string, string>>[siteList.Count]; 
+            Task<Dictionary<string, string>>[] tasks = new Task<Dictionary<string, string>>[siteList.Count];
             for (int i = 0; i < siteList.Count; i++)
             {
-                tasks[i] = Task<Dictionary<string, string>>.Factory.StartNew(siteList[i].Checker); 
+                tasks[i] = Task<Dictionary<string, string>>.Factory.StartNew(siteList[i].Checker);
             }
-            Task.WaitAll(tasks); 
+            Task.WaitAll(tasks);
 
             foreach (var task in tasks)
             {
@@ -63,27 +73,40 @@ namespace SharpForumChecker
                     listBox1.Items.Add(result.Key);
                 }
             }
-//             
-//             
-// 
-//             Console.WriteLine("--------------------------------------------------------------------");
-//             Console.WriteLine("-------------А ТЕПЕР ЧИТАЄМО ЗБЕРЕЖЕНЕ------------------------------");
-//             Console.WriteLine("--------------------------------------------------------------------");
-// 
-//             List<ISiteInterface> sites = SitesIo.OpenBin();
-//             
-//             Console.ForegroundColor = ConsoleColor.Green;
-//             foreach (var site in sites)
-//             {
-//                 Console.WriteLine(site.SiteName + "\t" + site.Filter);
-//                 foreach (var s in site.TopicDictionary)
-//                 {
-//                     Console.WriteLine(s.Key + "\t" + s.Value);
-//                 }
-//                 Console.WriteLine(new string('_', 30) + "\n");
-//             }
-// 
-//             string useless = Console.ReadLine();
+            //             
+            //             
+            // 
+            //             Console.WriteLine("--------------------------------------------------------------------");
+            //             Console.WriteLine("-------------А ТЕПЕР ЧИТАЄМО ЗБЕРЕЖЕНЕ------------------------------");
+            //             Console.WriteLine("--------------------------------------------------------------------");
+            // 
+            //             List<ISiteInterface> sites = SitesIo.OpenBin();
+            //             
+            //             Console.ForegroundColor = ConsoleColor.Green;
+            //             foreach (var site in sites)
+            //             {
+            //                 Console.WriteLine(site.SiteName + "\t" + site.Filter);
+            //                 foreach (var s in site.TopicDictionary)
+            //                 {
+            //                     Console.WriteLine(s.Key + "\t" + s.Value);
+            //                 }
+            //                 Console.WriteLine(new string('_', 30) + "\n");
+            //             }
+            // 
+            //             string useless = Console.ReadLine();
+        }
+
+        public void changeSettings(int interval, int randomizer) 
+        {
+            UpdInterval = (Int16)interval;
+            UpdRandom = (Int16)randomizer;
+
+            timerSearch.Interval = UpdInterval * 600;
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            performCheck();
         }
 
         public void addSiteIntoList(int site_type_index, string name, string url, string keys)
@@ -137,6 +160,18 @@ namespace SharpForumChecker
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SitesIo.SaveToBin(siteList);
+           
+            try
+            {
+                BinaryWriter bw = new BinaryWriter(File.Open("settings.cfg", FileMode.Create));
+                bw.Write(UpdInterval);
+                bw.Write(UpdRandom);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Не удалось сохранить настройки.");
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -150,6 +185,19 @@ namespace SharpForumChecker
                     listBox1.Items.Add(s.Key);
                 }
             }
+
+            try
+            {
+                BinaryReader br = new BinaryReader(File.Open("settings.cfg", FileMode.Open));
+                UpdInterval  = br.ReadInt16();
+                UpdRandom    = br.ReadInt16();
+                timerSearch.Interval = UpdInterval * 600;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Не удалось загрузить настройки.");
+            }
+            
         }
 
         private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,7 +207,21 @@ namespace SharpForumChecker
 
         private void timerSearch_Tick(object sender, EventArgs e)
         {
+            if (UpdCounter==0)
+            {
+                performCheck();
 
+                int tmp_interv = (UpdInterval + (rand.Next(-UpdRandom, +UpdRandom)) / 2) * 600;
+                if (tmp_interv < 600) { tmp_interv = 600; }
+
+                timerSearch.Interval = tmp_interv;
+                
+            }
+
+            UpdCounter++;
+            toolStripProgress.PerformStep();
+            if (UpdCounter > 99) { UpdCounter = 0; toolStripProgress.Value = 0; }
+            
         }
 
         private void btnSiteRem_Click(object sender, EventArgs e)
@@ -182,6 +244,19 @@ namespace SharpForumChecker
             addSite.button3.Visible = true;
             addSite.site_list_index = LBSites.SelectedIndex;
             addSite.ShowDialog();
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            toolStripProgress.Value = 0;
+            UpdCounter = 0;
+            performCheck();
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings set = new Settings(this,UpdInterval,UpdRandom);
+            set.Show();
         }
     }
 }

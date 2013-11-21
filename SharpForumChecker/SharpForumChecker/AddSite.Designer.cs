@@ -91,6 +91,7 @@
             this.lbThreads.Name = "lbThreads";
             this.lbThreads.Size = new System.Drawing.Size(433, 180);
             this.lbThreads.TabIndex = 7;
+            this.lbThreads.Click += new System.EventHandler(this.lbThreads_Click);
             // 
             // lbSites
             // 
@@ -98,8 +99,8 @@
             this.lbSites.FormattingEnabled = true;
             this.lbSites.ItemHeight = 16;
             this.lbSites.Items.AddRange(new object[] {
-            "forum.0day.kiev.ua - Барахолка",
-            "forum.overclockers.ua"});
+            "0day.kiev.ua [Барахолка-Продам]",
+            "Overclockers.ua [Барахолка]"});
             this.lbSites.Location = new System.Drawing.Point(6, 19);
             this.lbSites.Name = "lbSites";
             this.lbSites.Size = new System.Drawing.Size(220, 180);
