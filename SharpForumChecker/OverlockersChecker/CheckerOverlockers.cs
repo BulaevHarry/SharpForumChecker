@@ -39,6 +39,8 @@ namespace OverlockersChecker
                 return TopicDictionary; 
             }
 
+            TopicDictionary.Clear();
+
             var aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td[@class='row1']/a");
             foreach (var a in aList)
             {
