@@ -29,8 +29,8 @@ namespace SharpForumChecker
             siteList = new List<ISiteInterface>();
             rand = new Random();
 
-            UpdInterval = 0;
-            UpdRandom = 0;
+            UpdInterval = 1;
+            UpdRandom = 1;
             UpdCounter = 0;
         }
 
@@ -163,7 +163,7 @@ namespace SharpForumChecker
            
             try
             {
-                BinaryWriter bw = new BinaryWriter(File.Open("settings.cfg", FileMode.Create));
+                BinaryWriter bw = new BinaryWriter(File.Open(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\settings.cfg", FileMode.Create));
                 bw.Write(UpdInterval);
                 bw.Write(UpdRandom);
             }
@@ -188,7 +188,7 @@ namespace SharpForumChecker
 
             try
             {
-                BinaryReader br = new BinaryReader(File.Open("settings.cfg", FileMode.Open));
+                BinaryReader br = new BinaryReader(File.Open(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath)+"\\settings.cfg", FileMode.Open));
                 UpdInterval  = br.ReadInt16();
                 UpdRandom    = br.ReadInt16();
                 timerSearch.Interval = UpdInterval * 600;

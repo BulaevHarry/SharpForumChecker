@@ -15,9 +15,6 @@ namespace ZeroDayChecker
         public string SiteUri { get; set; }
         public Dictionary<string, string> TopicDictionary { get; set; }
 
-        
-        
-
         private string _blackList;
 
         public Checker0day()

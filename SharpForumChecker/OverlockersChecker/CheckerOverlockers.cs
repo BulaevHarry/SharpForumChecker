@@ -24,6 +24,7 @@ namespace OverlockersChecker
 
         public Dictionary<string, string> Checker()
         {
+            TopicDictionary.Clear();
             HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
             HtmlWeb _htmlWeb = new HtmlWeb();
 
@@ -39,7 +40,7 @@ namespace OverlockersChecker
                 return TopicDictionary; 
             }
 
-            TopicDictionary.Clear();
+            
 
             var aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td[@class='row1']/a");
             foreach (var a in aList)
@@ -56,12 +57,11 @@ namespace OverlockersChecker
                 {
                     string linkName = a.Attributes["href"].Value;
                     string linkNameFixed = linkName.Replace("&amp;", "&");
-                    if (!_blackList.Contains(linkNameFixed))
+                    if (!_blackList.Contains(linkNameFixed+" "))
                     {
                         TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkNameFixed;
-                        _blackList += linkNameFixed;
+                        _blackList += linkNameFixed+" ";
                     }
-                    
                 }
                 
             }

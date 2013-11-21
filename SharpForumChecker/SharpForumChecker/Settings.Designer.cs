@@ -38,9 +38,13 @@
             this.labelReloadRate = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbSound = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -93,7 +97,6 @@
             this.trackBar2.AutoSize = false;
             this.trackBar2.Location = new System.Drawing.Point(131, 52);
             this.trackBar2.Maximum = 30;
-            this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(227, 30);
             this.trackBar2.TabIndex = 4;
@@ -139,11 +142,43 @@
             this.label1.Text = "Интервал обновления";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.cbSound);
+            this.groupBox2.Location = new System.Drawing.Point(12, 114);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(439, 199);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Оповещения";
+            // 
+            // cbSound
+            // 
+            this.cbSound.AutoSize = true;
+            this.cbSound.Location = new System.Drawing.Point(9, 20);
+            this.cbSound.Name = "cbSound";
+            this.cbSound.Size = new System.Drawing.Size(140, 17);
+            this.cbSound.TabIndex = 0;
+            this.cbSound.Text = "Звуковое оповещение";
+            this.cbSound.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(9, 43);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(180, 17);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "Открыть найденое в браузере";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 354);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -155,6 +190,8 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -170,5 +207,8 @@
         private System.Windows.Forms.Label labelRand;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cbSound;
     }
 }
