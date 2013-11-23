@@ -20,11 +20,11 @@ namespace OverlockersChecker
         public CheckerOverlockers()
         {
             _blackList = "";
+            TopicDictionary = new Dictionary<string, string>();
         }
 
         public Dictionary<string, string> Checker()
         {
-            TopicDictionary.Clear();
             HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
             HtmlWeb _htmlWeb = new HtmlWeb();
 
@@ -43,6 +43,10 @@ namespace OverlockersChecker
             
 
             var aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td[@class='row1']/a");
+            if (aList == null)
+            {
+                return TopicDictionary;
+            }
             foreach (var a in aList)
             {
                 bool keyw = false;

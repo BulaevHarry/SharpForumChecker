@@ -30,3 +30,4 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForum
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Form1.resources
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Properties.Resources.resources
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.csproj.GenerateResource.Cache
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SharpForumChecker\obj\x86\Debug\SharpForumChecker.Settings.resources

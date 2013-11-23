@@ -39,8 +39,8 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbSound = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cbSound = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -153,16 +153,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оповещения";
             // 
-            // cbSound
-            // 
-            this.cbSound.AutoSize = true;
-            this.cbSound.Location = new System.Drawing.Point(9, 20);
-            this.cbSound.Name = "cbSound";
-            this.cbSound.Size = new System.Drawing.Size(140, 17);
-            this.cbSound.TabIndex = 0;
-            this.cbSound.Text = "Звуковое оповещение";
-            this.cbSound.UseVisualStyleBackColor = true;
-            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
@@ -172,6 +162,16 @@
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Открыть найденое в браузере";
             this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // cbSound
+            // 
+            this.cbSound.AutoSize = true;
+            this.cbSound.Location = new System.Drawing.Point(9, 20);
+            this.cbSound.Name = "cbSound";
+            this.cbSound.Size = new System.Drawing.Size(140, 17);
+            this.cbSound.TabIndex = 0;
+            this.cbSound.Text = "Звуковое оповещение";
+            this.cbSound.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -186,7 +186,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Settings";
+            this.Text = "Настройки";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

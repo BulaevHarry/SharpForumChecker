@@ -20,12 +20,15 @@ namespace SharpForumChecker
         string[,] OverclockersLinks;
         public int site_list_index;
 
+        private const int ZERODAY_SIZE = 7;
+        private const int OVERCLOCKERS_SIZE = 4;
+
         public AddSite(Form1 pf)
         {
             InitializeComponent();
             parent_form = pf;
 
-            ZeroDayLinks = new string[7, 2];
+            ZeroDayLinks = new string[ZERODAY_SIZE, 2];
             ZeroDayLinks[0, 0] = "Авто, мото, вело";
             ZeroDayLinks[1, 0] = "ПК, комплектующие, оргтехника";
             ZeroDayLinks[2, 0] = "Фото и видео";
@@ -41,7 +44,7 @@ namespace SharpForumChecker
             ZeroDayLinks[5, 1] = "http://forum.0day.kiev.ua/index.php?showforum=308";
             ZeroDayLinks[6, 1] = "http://forum.0day.kiev.ua/index.php?showforum=310";
 
-            OverclockersLinks = new string[4, 2];
+            OverclockersLinks = new string[OVERCLOCKERS_SIZE, 2];
             OverclockersLinks[0, 0] = "Продам";
             OverclockersLinks[1, 0] = "Куплю";
             OverclockersLinks[2, 0] = "Обмен";
@@ -57,21 +60,21 @@ namespace SharpForumChecker
             if (lbSites.SelectedIndex == 0)
             {
                 lbThreads.Items.Clear();
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < ZERODAY_SIZE; i++)
                 {
                     lbThreads.Items.Add(ZeroDayLinks[i, 0]);
                 }
-                if (!button3.Visible) { tbName.Text = "0day -"; }
+                /*if (!button3.Visible) { */tbName.Text = "0day -";/* }*/
             }
             else
             if (lbSites.SelectedIndex == 1)
             {
                 lbThreads.Items.Clear();
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < OVERCLOCKERS_SIZE; i++)
                 {
                     lbThreads.Items.Add(OverclockersLinks[i, 0]);
                 }
-                if (!button3.Visible) { tbName.Text = "Overcklockers -"; }
+                /*if (!button3.Visible) { */tbName.Text = "Overcklockers -";/* }*/
             }
         }
 
@@ -112,16 +115,45 @@ namespace SharpForumChecker
 
         private void lbThreads_Click(object sender, EventArgs e)
         {
-            if (button3.Visible) return;
+            /*if (button3.Visible) return;*/
             if (lbSites.SelectedIndex == 0)
             {
-                tbName.Text = "0day - "+lbThreads.Items[lbThreads.SelectedIndex].ToString();
+                tbName.Text = "0day - "+lbThreads.Items[lbThreads.SelectedIndex].ToString()+ " - [" + tbKeywords.Text +"]";
             }
             else
             if (lbSites.SelectedIndex == 1)
             {
-                tbName.Text = "Overcklockers - " + lbThreads.Items[lbThreads.SelectedIndex].ToString();  
+                tbName.Text = "Overcklockers - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
             }
+        }
+
+        public void selectEditedInLists(string link)
+        {
+            for (int i = 0; i < ZERODAY_SIZE; i++)
+            {
+                if (ZeroDayLinks[i, 1] == link)
+                {
+                    lbSites.SetSelected(0, true);
+                    LBsites_Click(this, new EventArgs());
+                    lbThreads.SetSelected(i, true);
+                    return;
+                }
+            }
+            for (int i = 0; i < OVERCLOCKERS_SIZE; i++)
+            {
+                if (OverclockersLinks[i, 1] == link)
+                {
+                    lbSites.SetSelected(1, true);
+                    LBsites_Click(this, new EventArgs());
+                    lbThreads.SetSelected(i, true);
+                    return;
+                }
+            }
+        }
+
+        private void tbKeywords_TextChanged(object sender, EventArgs e)
+        {
+            lbThreads_Click(sender, e);
         }
     }
 }

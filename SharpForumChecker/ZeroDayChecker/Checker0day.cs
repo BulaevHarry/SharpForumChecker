@@ -25,8 +25,6 @@ namespace ZeroDayChecker
 
         public Dictionary<string, string> Checker()
         {
-            TopicDictionary.Clear();
-
             HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
             HtmlWeb      _htmlWeb = new HtmlWeb
             {

@@ -12,6 +12,7 @@ using ZeroDayChecker;
 using OverlockersChecker;
 using AukroChecker;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace SharpForumChecker
 {
@@ -22,6 +23,9 @@ namespace SharpForumChecker
         private Int16 UpdRandom;
         private Int16 UpdCounter;
         private Random rand;
+
+        [DllImport("shell32.dll")]
+        private static extern int ShellExecute(int hWnd, string Operation, string File, string Parameters, string Directory, int nShowCmd);
 
         public Form1()
         {
@@ -36,28 +40,13 @@ namespace SharpForumChecker
 
         private void performCheck()
         {
+            /*listBox1.Items.Clear();*/
+            foreach (TreeNode nod in treeView1.Nodes)
+            {
+                nod.Nodes.Clear();
+            }
             toolStripProgress.PerformStep();
-
-            //             Checker0day Zday = new Checker0day();
-            //             Zday.SiteName = "0day Авто Мото";
-            //             Zday.Filter = textBoxKeyWords.Text;
-            //             Zday.SiteUri = "http://forum.0day.kiev.ua/index.php?showforum=302";
-            //             siteList.Add(Zday);
-
-            //             CheckerOverlockers OvLck = new CheckerOverlockers();
-            //             OvLck.SiteName = "Overclockers";
-            //             OvLck.Filter = textBoxKeyWords.Text;
-            //             OvLck.SiteUri = "http://forum.overclockers.ua/viewforum.php?f=26";
-            //             siteList.Add(OvLck);
-
-            //             CheckerAukro OvLck = new CheckerAukro();
-            //             OvLck.SiteName = "Aukro";
-            //             OvLck.Filter = textBoxKeyWords.Text;
-            //             OvLck.SiteUri = "http://aukro.ua/listing/listing.php?string=телефон+нокиа&search_scope=все+разделы";
-            //             siteList.Add(OvLck);
-
-            //siteList[0].Checker();
-
+           
             Task<Dictionary<string, string>>[] tasks = new Task<Dictionary<string, string>>[siteList.Count];
             for (int i = 0; i < siteList.Count; i++)
             {
@@ -65,35 +54,17 @@ namespace SharpForumChecker
             }
             Task.WaitAll(tasks);
 
+            int foreach_iterator = 0;
             foreach (var task in tasks)
             {
                 Dictionary<string, string> resuts = task.Result;
                 foreach (var result in resuts)
                 {
-                    listBox1.Items.Add(result.Key);
+                    treeView1.Nodes[foreach_iterator].Nodes.Add(result.Key);
                 }
+                foreach_iterator++;
             }
-            //             
-            //             
-            // 
-            //             Console.WriteLine("--------------------------------------------------------------------");
-            //             Console.WriteLine("-------------А ТЕПЕР ЧИТАЄМО ЗБЕРЕЖЕНЕ------------------------------");
-            //             Console.WriteLine("--------------------------------------------------------------------");
-            // 
-            //             List<ISiteInterface> sites = SitesIo.OpenBin();
-            //             
-            //             Console.ForegroundColor = ConsoleColor.Green;
-            //             foreach (var site in sites)
-            //             {
-            //                 Console.WriteLine(site.SiteName + "\t" + site.Filter);
-            //                 foreach (var s in site.TopicDictionary)
-            //                 {
-            //                     Console.WriteLine(s.Key + "\t" + s.Value);
-            //                 }
-            //                 Console.WriteLine(new string('_', 30) + "\n");
-            //             }
-            // 
-            //             string useless = Console.ReadLine();
+
         }
 
         public void changeSettings(int interval, int randomizer) 
@@ -124,7 +95,9 @@ namespace SharpForumChecker
             site.SiteUri = url;
             siteList.Add(site);
 
-            LBSites.Items.Add(name);
+            treeView1.Nodes.Add(name);
+            treeView1.Nodes[treeView1.Nodes.Count - 1].BackColor = Color.Wheat;
+
         }
 
         public void editSiteInTheList(int site_type_index, int site_list_index, string name, string url, string keys)
@@ -143,7 +116,7 @@ namespace SharpForumChecker
             site.SiteUri = url;
             siteList[site_list_index] = site;
 
-            LBSites.Items[site_list_index] = name;
+            treeView1.Nodes[site_list_index].Text = name; 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -159,6 +132,10 @@ namespace SharpForumChecker
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (siteList.Count == 0)
+            {
+                return;
+            }
             SitesIo.SaveToBin(siteList);
            
             try
@@ -179,10 +156,11 @@ namespace SharpForumChecker
             siteList = SitesIo.OpenBin();
             foreach (var site in siteList)
             {
-                LBSites.Items.Add(site.SiteName);
+                treeView1.Nodes.Add(site.SiteName);
+                treeView1.Nodes[treeView1.Nodes.Count - 1].BackColor = Color.Wheat;
                 foreach (var s in site.TopicDictionary)
                 {
-                    listBox1.Items.Add(s.Key);
+                    treeView1.Nodes[treeView1.Nodes.Count-1].Nodes.Add(s.Key);
                 }
             }
 
@@ -198,11 +176,6 @@ namespace SharpForumChecker
                 MessageBox.Show("Не удалось загрузить настройки.");
             }
             
-        }
-
-        private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
         }
 
         private void timerSearch_Tick(object sender, EventArgs e)
@@ -224,28 +197,6 @@ namespace SharpForumChecker
             
         }
 
-        private void btnSiteRem_Click(object sender, EventArgs e)
-        {
-            if (LBSites.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            siteList.RemoveAt(LBSites.SelectedIndex);
-            LBSites.Items.RemoveAt(LBSites.SelectedIndex);
-
-        }
-
-        private void LBSites_DoubleClick(object sender, EventArgs e)
-        {
-            AddSite addSite = new AddSite(this);
-            addSite.tbName.Text = siteList[LBSites.SelectedIndex].SiteName;
-            addSite.tbKeywords.Text=siteList[LBSites.SelectedIndex].Filter;
-            addSite.button3.Visible = true;
-            addSite.site_list_index = LBSites.SelectedIndex;
-            addSite.ShowDialog();
-        }
-
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
             toolStripProgress.Value = 0;
@@ -258,5 +209,74 @@ namespace SharpForumChecker
             Settings set = new Settings(this,UpdInterval,UpdRandom);
             set.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode.Index < 0)
+            {
+                return;
+            }
+
+            siteList.RemoveAt(treeView1.SelectedNode.Index);
+            treeView1.SelectedNode.Remove();
+        }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            
+            if (treeView1.SelectedNode.Level == 0)
+            {
+                
+            }
+
+            if (treeView1.SelectedNode.Level == 1)
+            {
+                int lv0i = treeView1.SelectedNode.Parent.Index;
+                int lv1i = treeView1.SelectedNode.Index;
+                string lv1t = treeView1.SelectedNode.Text;
+                openUrlInBrowser(siteList[lv0i].TopicDictionary[lv1t]);
+
+            }
+
+        }
+
+        private void openUrlInBrowser(string link)
+        {
+            ShellExecute(0, "open", link, "", "", 1);
+        }
+
+        private void treeView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Select the clicked node
+                treeView1.SelectedNode = treeView1.GetNodeAt(e.X, e.Y);
+                if (treeView1.SelectedNode.Level == 1) { return; }
+
+                if (/*(treeView1.SelectedNode != null && treeView1.SelectedNode.Parent == null) || */ true)
+                {
+                    contextMenuStrip1.Show(treeView1, e.Location);
+                }
+            }
+        }
+
+        private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeView1.SelectedNode.Collapse();
+            AddSite addSite = new AddSite(this);
+            addSite.Text = "Редактировать сайт";
+            addSite.selectEditedInLists(siteList[treeView1.SelectedNode.Index].SiteUri);
+            addSite.tbName.Text = siteList[treeView1.SelectedNode.Index].SiteName;
+            addSite.tbKeywords.Text = siteList[treeView1.SelectedNode.Index].Filter;
+            addSite.button3.Visible = true;
+            addSite.site_list_index = treeView1.SelectedNode.Index;
+            addSite.ShowDialog();
+        }
+
     }
 }

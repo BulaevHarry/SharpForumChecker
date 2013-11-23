@@ -131,6 +131,7 @@
             this.tbKeywords.Name = "tbKeywords";
             this.tbKeywords.Size = new System.Drawing.Size(659, 50);
             this.tbKeywords.TabIndex = 4;
+            this.tbKeywords.TextChanged += new System.EventHandler(this.tbKeywords_TextChanged);
             // 
             // groupBox3
             // 
@@ -180,7 +181,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddSite";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddSite";
+            this.Text = "Добавить сайт";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

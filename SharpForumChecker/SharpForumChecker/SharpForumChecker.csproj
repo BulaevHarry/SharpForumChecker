@@ -140,6 +140,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\reload.ico" />
+    <None Include="Resources\exit.ico" />
+    <None Include="Resources\help.ico" />
+    <None Include="Resources\setting.ico" />
+    <None Include="Resources\sites.ico" />
+    <None Include="Resources\remove.ico" />
+    <None Include="Resources\edit.ico" />
+    <None Include="Resources\add.ico" />
     <Content Include="Resources\app.ico" />
     <None Include="Resources\reload.png" />
   </ItemGroup>
