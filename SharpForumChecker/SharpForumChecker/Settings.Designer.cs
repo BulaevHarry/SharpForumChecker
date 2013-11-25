@@ -39,8 +39,11 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.cbSound = new System.Windows.Forms.CheckBox();
+            this.btnSelectAudio = new System.Windows.Forms.Button();
+            this.tbSoundFileName = new System.Windows.Forms.TextBox();
+            this.cbPlaySound = new System.Windows.Forms.CheckBox();
+            this.selectFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.cbOpenInBrowser = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -144,8 +147,10 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.cbSound);
+            this.groupBox2.Controls.Add(this.cbOpenInBrowser);
+            this.groupBox2.Controls.Add(this.btnSelectAudio);
+            this.groupBox2.Controls.Add(this.tbSoundFileName);
+            this.groupBox2.Controls.Add(this.cbPlaySound);
             this.groupBox2.Location = new System.Drawing.Point(12, 114);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(439, 199);
@@ -153,25 +158,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оповещения";
             // 
-            // checkBox2
+            // btnSelectAudio
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 43);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(180, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Открыть найденое в браузере";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.btnSelectAudio.Location = new System.Drawing.Point(358, 19);
+            this.btnSelectAudio.Name = "btnSelectAudio";
+            this.btnSelectAudio.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAudio.TabIndex = 2;
+            this.btnSelectAudio.Text = "Выбрать";
+            this.btnSelectAudio.UseVisualStyleBackColor = true;
+            this.btnSelectAudio.Click += new System.EventHandler(this.btnSelectAudio_Click);
             // 
-            // cbSound
+            // tbSoundFileName
             // 
-            this.cbSound.AutoSize = true;
-            this.cbSound.Location = new System.Drawing.Point(9, 20);
-            this.cbSound.Name = "cbSound";
-            this.cbSound.Size = new System.Drawing.Size(140, 17);
-            this.cbSound.TabIndex = 0;
-            this.cbSound.Text = "Звуковое оповещение";
-            this.cbSound.UseVisualStyleBackColor = true;
+            this.tbSoundFileName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbSoundFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbSoundFileName.Location = new System.Drawing.Point(131, 24);
+            this.tbSoundFileName.Name = "tbSoundFileName";
+            this.tbSoundFileName.ReadOnly = true;
+            this.tbSoundFileName.Size = new System.Drawing.Size(221, 13);
+            this.tbSoundFileName.TabIndex = 1;
+            this.tbSoundFileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // cbPlaySound
+            // 
+            this.cbPlaySound.Location = new System.Drawing.Point(6, 21);
+            this.cbPlaySound.Name = "cbPlaySound";
+            this.cbPlaySound.Size = new System.Drawing.Size(129, 20);
+            this.cbPlaySound.TabIndex = 0;
+            this.cbPlaySound.Text = "Проигрывать звук";
+            this.cbPlaySound.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbPlaySound.UseVisualStyleBackColor = true;
+            // 
+            // selectFileDlg
+            // 
+            this.selectFileDlg.Filter = "аудиофайлы wav|*.wav";
+            // 
+            // cbOpenInBrowser
+            // 
+            this.cbOpenInBrowser.AutoSize = true;
+            this.cbOpenInBrowser.Location = new System.Drawing.Point(6, 43);
+            this.cbOpenInBrowser.Name = "cbOpenInBrowser";
+            this.cbOpenInBrowser.Size = new System.Drawing.Size(180, 17);
+            this.cbOpenInBrowser.TabIndex = 3;
+            this.cbOpenInBrowser.Text = "Открыть найденое в браузере";
+            this.cbOpenInBrowser.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -208,7 +238,10 @@
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox cbSound;
+        private System.Windows.Forms.CheckBox cbPlaySound;
+        private System.Windows.Forms.Button btnSelectAudio;
+        private System.Windows.Forms.TextBox tbSoundFileName;
+        private System.Windows.Forms.OpenFileDialog selectFileDlg;
+        private System.Windows.Forms.CheckBox cbOpenInBrowser;
     }
 }

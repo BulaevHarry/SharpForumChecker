@@ -14,21 +14,27 @@ namespace OverlockersChecker
         public string SiteName { get; set; }
         public string Filter { get; set; }
         public string SiteUri { get; set; }
+        public int UpdatesCount { get; set; }
+        public bool JustAdded { get; set; }
         public Dictionary<string, string> TopicDictionary { get; set; }
-        private string _blackList;
+        private List<string> _blackList;
 
         public CheckerOverlockers()
         {
-            _blackList = "";
+            _blackList = new List<string>();
             TopicDictionary = new Dictionary<string, string>();
+            UpdatesCount = 0;
+            JustAdded = true;
         }
 
         public Dictionary<string, string> Checker()
         {
+            UpdatesCount = 0;
+            //TopicDictionary.Clear();
+
             HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
             HtmlWeb _htmlWeb = new HtmlWeb();
 
-            TopicDictionary = new Dictionary<string, string>();
             List<string> _keywords = new List<string>(Filter.Split(','));
 
             try
@@ -40,8 +46,8 @@ namespace OverlockersChecker
                 return TopicDictionary; 
             }
 
-            
 
+            
             var aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td[@class='row1']/a");
             if (aList == null)
             {
@@ -49,25 +55,31 @@ namespace OverlockersChecker
             }
             foreach (var a in aList)
             {
-                bool keyw = false;
-                foreach (string str in _keywords)
+                if (!_blackList.Contains(a.InnerText))
                 {
-                    if (a.InnerText.Contains(str))
+                    _blackList.Add(a.InnerText);
+
+                    bool keyw = false;
+                    foreach (string str in _keywords)
                     {
-                        keyw = true;
+                        if (a.InnerText.Contains(str))
+                        {
+                            keyw = true;
+                        }
                     }
-                }
-                if (keyw)
-                {
-                    string linkName = a.Attributes["href"].Value;
-                    string linkNameFixed = linkName.Replace("&amp;", "&");
-                    if (!_blackList.Contains(linkNameFixed+" "))
+                    if (keyw)
                     {
+                        string linkName = a.Attributes["href"].Value;
+                        string linkNameFixed = linkName.Replace("&amp;", "&");
                         TopicDictionary[a.InnerText] = "http://forum.overclockers.ua/" + linkNameFixed;
-                        _blackList += linkNameFixed+" ";
+                        UpdatesCount++;
                     }
                 }
-                
+            }
+            if (JustAdded)
+            {
+                JustAdded = false;
+                UpdatesCount = 0;
             }
             return TopicDictionary;
         }

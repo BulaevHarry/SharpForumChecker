@@ -13,18 +13,25 @@ namespace ZeroDayChecker
         public string SiteName { get; set; }
         public string Filter { get; set; }
         public string SiteUri { get; set; }
+        public int UpdatesCount { get; set; }
+        public bool JustAdded { get; set; }
         public Dictionary<string, string> TopicDictionary { get; set; }
 
-        private string _blackList;
+        private List<string> _blackList;
 
         public Checker0day()
         {
-            _blackList = "";
+            _blackList = new List<string>();
             TopicDictionary = new Dictionary<string, string>();
+            UpdatesCount = 0;
+            JustAdded = true;
         }
 
         public Dictionary<string, string> Checker()
         {
+            UpdatesCount = 0;
+            //TopicDictionary.Clear();
+
             HtmlDocument _htmlDoc = new HtmlAgilityPack.HtmlDocument();
             HtmlWeb      _htmlWeb = new HtmlWeb
             {
@@ -70,14 +77,20 @@ namespace ZeroDayChecker
                                 linkNubmer += temp_str[ii].ToString(); //а тепер в лінкНамбер наш номер топіка
                             }
 
-                            if (!_blackList.Contains(linkNubmer+" ")) //якшо ще не реагував на такий номер топіка
+                            if (!_blackList.Contains(linkNubmer)) 
                             {
                                 TopicDictionary[topicText] = "http://forum.0day.kiev.ua/index.php?showtopic=" + linkNubmer;
-                                _blackList += linkNubmer+" "; //реагую і добавляю в блек ліст
+                                _blackList.Add(linkNubmer);
+                                UpdatesCount++;
                             }
                         }
                     }
                 }
+            }
+            if (JustAdded)
+            {
+                JustAdded = false;
+                UpdatesCount = 0;
             }
             return TopicDictionary;
         }

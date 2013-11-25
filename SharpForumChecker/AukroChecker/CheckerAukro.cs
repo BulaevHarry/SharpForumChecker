@@ -13,6 +13,7 @@ namespace AukroChecker
         public string SiteName { get; set; }
         public string Filter { get; set; }
         public string SiteUri { get; set; }
+        public
         public Dictionary<string, string> TopicDictionary { get; set; }
         private string _blackList;
 

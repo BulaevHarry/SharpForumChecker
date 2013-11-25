@@ -8,15 +8,16 @@ namespace SiteMonitorInterface
 {
     public interface ISiteInterface
     {
-        string SiteName { get; set; } // site Name
-        string Filter { get; set; } // key Words
-        string SiteUri { get; set; } // site uri
-        Dictionary<string, string> TopicDictionary { get; set; } //dict of topics (topicname - url) || (topicname - url)
+        string SiteName { get; set; }
+        string Filter { get; set; }
+        string SiteUri { get; set; }
+        int UpdatesCount { get; set; }
+        bool JustAdded { get; set; }
+        Dictionary<string, string> TopicDictionary { get; set; } 
 
-        Dictionary<string, string> Checker(); // for async threds --- у кожного класа сайта своя реалізація
+        Dictionary<string, string> Checker();
     }
 
-    // допоміжниій клас для зберігання і відкривання списку сутністей всіх сайтів (зберігаються)
     public static class SitesIo
     {
         public static void SaveToBin(List<ISiteInterface> siteList)
