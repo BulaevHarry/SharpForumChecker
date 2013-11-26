@@ -13,6 +13,10 @@ using OverlockersChecker;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Media;
+using System.Web;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 
 namespace SharpForumChecker
 {
@@ -25,6 +29,8 @@ namespace SharpForumChecker
         private bool EnableSoundAlert;
         private string SoundFileName;
         private bool EnableOpenInBrowser;
+        private bool EnableSendMail;
+        private string EMailAdress;
         private Random rand;
         private SoundPlayer AlertPlayer;
 
@@ -44,6 +50,8 @@ namespace SharpForumChecker
 
             EnableOpenInBrowser = false;
 
+            EnableSendMail = false;
+            EMailAdress = "address#mailer.lol";
         }
 
     #region реакции на найденое
@@ -56,7 +64,7 @@ namespace SharpForumChecker
         }
     #endregion
     #region проигрывание звука
-        private void PlayAlert()
+        private void playAlert()
         {
             try
             {
@@ -67,6 +75,36 @@ namespace SharpForumChecker
                 AlertPlayer = new SoundPlayer(Properties.Resources.alert);
                 AlertPlayer.Play();
             }
+        }
+    #endregion
+    #region отправка уведомления на почту
+        private void sendMailNotification(List<string> captions, List<string> links)
+        {
+            var client = new SmtpClient("smtp.gmail.com", 587);
+            client.Credentials = new NetworkCredential("robot.forum.checker@gmail.com", "1q2w3e4r5t6y7u8");
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+
+            string from = "robot.forum.checker@gmail.com";
+            string to = "aso.asa7elo@gmail.com";
+            string subject = "ForumChecker notification";
+            string body = "Привет, Ондрей! \nПриложение ForumChecker нашло для тебя новые интересности!\n\n";
+
+            for (int i = 0; i < captions.Count; i++)
+            {
+                body += captions[i] + "\n" + links[i] + "\n\n";
+            }
+
+            MailMessage mess = new MailMessage(from, to, subject, body);
+            try
+            {
+                client.Send(mess);
+            }
+            catch (System.Exception ex)
+            {
+                System.Media.SystemSounds.Exclamation.Play();
+            }
+            
         }
     #endregion
     #endregion
@@ -101,20 +139,29 @@ namespace SharpForumChecker
             }
 
             //КОСТИЛІ БЛЕАТЬ!!!!!!!!
-            bool ShouldIPlaySound = false;
+            bool IShouldDoSomething = false;
+            List<string> s_names = new List<string>();
+            List<string> s_links = new List<string>();
+
             for (int s = 0; s < siteList.Count; s++)
             {
-                if (siteList[s].UpdatesCount > 0) ShouldIPlaySound=true;
+                if (siteList[s].UpdatesCount > 0) IShouldDoSomething=true;
 
                 for (int n=treeView1.Nodes[s].Nodes.Count-siteList[s].UpdatesCount; n<treeView1.Nodes[s].Nodes.Count; n++)
                 {
                     if(EnableOpenInBrowser) openUrlInBrowser(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
+                    s_names.Add(treeView1.Nodes[s].Nodes[n].Text);
+                    s_links.Add(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
                 }
                 siteList[s].UpdatesCount = 0;
             }
-            if (EnableSoundAlert && ShouldIPlaySound)
+            if (EnableSoundAlert && IShouldDoSomething)
             {
-                PlayAlert();
+                playAlert();
+            }
+            if (EnableSendMail && IShouldDoSomething)
+            {
+                sendMailNotification(s_names, s_links);
             }
 
         }
@@ -162,6 +209,8 @@ namespace SharpForumChecker
                 bw.Write(EnableSoundAlert);
                 bw.Write(SoundFileName);
                 bw.Write(EnableOpenInBrowser);
+                bw.Write(EnableSendMail);
+                bw.Write(EMailAdress);
                 bw.Close();
             }
             catch (System.Exception ex)
@@ -182,6 +231,7 @@ namespace SharpForumChecker
                 {
                     treeView1.Nodes[treeView1.Nodes.Count - 1].Nodes.Add(s.Key);
                 }
+                //site.JustAdded = true; /*ТИМЧАСОВИЙ КОСТИЛЬ*/
             }
 
             //подтягую настройки
@@ -193,6 +243,8 @@ namespace SharpForumChecker
                 EnableSoundAlert = br.ReadBoolean();
                 SoundFileName = br.ReadString();
                 EnableOpenInBrowser = br.ReadBoolean();
+                EnableSendMail = br.ReadBoolean();
+                EMailAdress = br.ReadString();
                 timerSearch.Interval = UpdInterval * 600;
                 AlertPlayer = new SoundPlayer(SoundFileName);
                 br.Close();
@@ -276,19 +328,21 @@ namespace SharpForumChecker
         }
     #endregion
 
-    #region работа с окном настрек
+    #region работа с окном настрoек
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings set = new Settings(this, UpdInterval, UpdRandom, EnableSoundAlert, SoundFileName, EnableOpenInBrowser);
+            Settings set = new Settings(this, UpdInterval, UpdRandom, EnableSoundAlert, SoundFileName, EnableOpenInBrowser, EnableSendMail, EMailAdress);
             set.Show();
         }
-        public void changeSettings(int interval, int randomizer, bool enableSound, string soundFN, bool enableOpenInBrowser)
+        public void changeSettings(int interval, int randomizer, bool enableSound, string soundFN, bool enableOpenInBrowser, bool enableSendMail, string E_addr)
         {
             UpdInterval = (Int16)interval;
             UpdRandom = (Int16)randomizer;
             EnableSoundAlert = enableSound;
             SoundFileName = soundFN;
             EnableOpenInBrowser = enableOpenInBrowser;
+            EnableSendMail = enableSendMail;
+            EMailAdress = E_addr;
 
             AlertPlayer = new SoundPlayer(SoundFileName);
             timerSearch.Interval = UpdInterval * 600;

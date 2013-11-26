@@ -39,11 +39,13 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbOpenInBrowser = new System.Windows.Forms.CheckBox();
             this.btnSelectAudio = new System.Windows.Forms.Button();
             this.tbSoundFileName = new System.Windows.Forms.TextBox();
             this.cbPlaySound = new System.Windows.Forms.CheckBox();
             this.selectFileDlg = new System.Windows.Forms.OpenFileDialog();
-            this.cbOpenInBrowser = new System.Windows.Forms.CheckBox();
+            this.cbSendMail = new System.Windows.Forms.CheckBox();
+            this.tbMailAddr = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -53,7 +55,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(295, 319);
+            this.btnSave.Location = new System.Drawing.Point(295, 225);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -64,7 +66,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(376, 319);
+            this.btnClose.Location = new System.Drawing.Point(376, 225);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 1;
@@ -147,16 +149,28 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbMailAddr);
+            this.groupBox2.Controls.Add(this.cbSendMail);
             this.groupBox2.Controls.Add(this.cbOpenInBrowser);
             this.groupBox2.Controls.Add(this.btnSelectAudio);
             this.groupBox2.Controls.Add(this.tbSoundFileName);
             this.groupBox2.Controls.Add(this.cbPlaySound);
             this.groupBox2.Location = new System.Drawing.Point(12, 114);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(439, 199);
+            this.groupBox2.Size = new System.Drawing.Size(439, 101);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оповещения";
+            // 
+            // cbOpenInBrowser
+            // 
+            this.cbOpenInBrowser.AutoSize = true;
+            this.cbOpenInBrowser.Location = new System.Drawing.Point(6, 47);
+            this.cbOpenInBrowser.Name = "cbOpenInBrowser";
+            this.cbOpenInBrowser.Size = new System.Drawing.Size(180, 17);
+            this.cbOpenInBrowser.TabIndex = 3;
+            this.cbOpenInBrowser.Text = "Открыть найденое в браузере";
+            this.cbOpenInBrowser.UseVisualStyleBackColor = true;
             // 
             // btnSelectAudio
             // 
@@ -193,21 +207,33 @@
             // 
             this.selectFileDlg.Filter = "аудиофайлы wav|*.wav";
             // 
-            // cbOpenInBrowser
+            // cbSendMail
             // 
-            this.cbOpenInBrowser.AutoSize = true;
-            this.cbOpenInBrowser.Location = new System.Drawing.Point(6, 43);
-            this.cbOpenInBrowser.Name = "cbOpenInBrowser";
-            this.cbOpenInBrowser.Size = new System.Drawing.Size(180, 17);
-            this.cbOpenInBrowser.TabIndex = 3;
-            this.cbOpenInBrowser.Text = "Открыть найденое в браузере";
-            this.cbOpenInBrowser.UseVisualStyleBackColor = true;
+            this.cbSendMail.AutoSize = true;
+            this.cbSendMail.Location = new System.Drawing.Point(6, 70);
+            this.cbSendMail.Name = "cbSendMail";
+            this.cbSendMail.Size = new System.Drawing.Size(207, 17);
+            this.cbSendMail.TabIndex = 4;
+            this.cbSendMail.Text = "Отправлять уведомление на адрес:";
+            this.cbSendMail.UseVisualStyleBackColor = true;
+            // 
+            // tbMailAddr
+            // 
+            this.tbMailAddr.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbMailAddr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMailAddr.Location = new System.Drawing.Point(219, 68);
+            this.tbMailAddr.Name = "tbMailAddr";
+            this.tbMailAddr.Size = new System.Drawing.Size(214, 20);
+            this.tbMailAddr.TabIndex = 5;
+            this.tbMailAddr.Text = "aso.asa7elo@gmail.com";
+            this.tbMailAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbMailAddr.TextChanged += new System.EventHandler(this.tbMailAddr_TextChanged);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 354);
+            this.ClientSize = new System.Drawing.Size(463, 260);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
@@ -243,5 +269,7 @@
         private System.Windows.Forms.TextBox tbSoundFileName;
         private System.Windows.Forms.OpenFileDialog selectFileDlg;
         private System.Windows.Forms.CheckBox cbOpenInBrowser;
+        private System.Windows.Forms.CheckBox cbSendMail;
+        private System.Windows.Forms.TextBox tbMailAddr;
     }
 }
