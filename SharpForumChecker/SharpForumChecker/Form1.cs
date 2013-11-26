@@ -88,7 +88,7 @@ namespace SharpForumChecker
             string from = "robot.forum.checker@gmail.com";
             string to = "aso.asa7elo@gmail.com";
             string subject = "ForumChecker notification";
-            string body = "Привет, Ондрей! \nПриложение ForumChecker нашло для тебя новые интересности!\n\n";
+            string body = "Привет, анонимус! \nПриложение ForumChecker нашло для тебя новые интересности!\n\n";
 
             for (int i = 0; i < captions.Count; i++)
             {
@@ -152,6 +152,7 @@ namespace SharpForumChecker
                     if(EnableOpenInBrowser) openUrlInBrowser(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
                     s_names.Add(treeView1.Nodes[s].Nodes[n].Text);
                     s_links.Add(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
+                    treeView1.Nodes[s].Nodes[n].BackColor = Color.NavajoWhite;
                 }
                 siteList[s].UpdatesCount = 0;
             }

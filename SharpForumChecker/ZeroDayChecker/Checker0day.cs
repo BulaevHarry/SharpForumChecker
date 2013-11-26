@@ -51,6 +51,8 @@ namespace ZeroDayChecker
             }
 
             var spanList = _htmlDoc.DocumentNode.SelectNodes("//tr/td/div/span");
+            if (spanList == null) { return TopicDictionary; }
+            
             foreach (HtmlNode span in spanList)
             {
                 if (span.InnerHtml.Contains("Тема создана:"))
