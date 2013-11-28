@@ -20,9 +20,9 @@ namespace SiteMonitorInterface
 
     public static class SitesIo
     {
-        public static void SaveToBin(List<ISiteInterface> siteList)
+        public static void SaveToBin(List<ISiteInterface> siteList, string directory_name)
         {
-            FileStream fs = new FileStream("sites.dat", FileMode.Create);
+            FileStream fs = new FileStream(directory_name + "\\sites.dat", FileMode.Create);
 
             BinaryFormatter formatter = new BinaryFormatter();
             try
@@ -45,13 +45,13 @@ namespace SiteMonitorInterface
             // think about XML... for what? o_0
         }
 
-        public static List<ISiteInterface> OpenBin()
+        public static List<ISiteInterface> OpenBin(string directory_name)
         {
             List<ISiteInterface> sites;
 
             try
             {
-                using (FileStream fs = new FileStream("sites.dat", FileMode.Open))
+                using (FileStream fs = new FileStream(directory_name + "\\sites.dat", FileMode.Open))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     sites = (List<ISiteInterface>)formatter.Deserialize(fs);

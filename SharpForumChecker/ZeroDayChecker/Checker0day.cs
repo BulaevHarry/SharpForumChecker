@@ -94,6 +94,7 @@ namespace ZeroDayChecker
                 JustAdded = false;
                 UpdatesCount = 0;
             }
+            UpdatesCount = 1;
             return TopicDictionary;
         }
     }

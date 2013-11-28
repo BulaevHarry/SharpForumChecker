@@ -30,6 +30,8 @@ namespace SharpForumChecker
         private string SoundFileName;
         private bool EnableOpenInBrowser;
         private bool EnableSendMail;
+        private bool MinimizeOnLaunch;
+        private bool MinimizeToTray;
         private string EMailAdress;
         private Random rand;
         private SoundPlayer AlertPlayer;
@@ -51,7 +53,10 @@ namespace SharpForumChecker
             EnableOpenInBrowser = false;
 
             EnableSendMail = false;
-            EMailAdress = "address#mailer.lol";
+            EMailAdress = "address@mailer";
+
+            MinimizeOnLaunch = false;
+            MinimizeToTray = false;
         }
 
     #region реакции на найденое
@@ -133,12 +138,12 @@ namespace SharpForumChecker
                 Dictionary<string, string> results = task.Result;
                 foreach (var result in results)
                 {
-                    treeView1.Nodes[foreach_iterator].Nodes.Add(result.Key);
+                    treeView1.Nodes[foreach_iterator].Nodes.Insert(0, result.Key);//Add(result.Key);
                 }
                 foreach_iterator++;
             }
 
-            //КОСТИЛІ БЛЕАТЬ!!!!!!!!
+            //ковиряння в вусі через жопу
             bool IShouldDoSomething = false;
             List<string> s_names = new List<string>();
             List<string> s_links = new List<string>();
@@ -147,12 +152,13 @@ namespace SharpForumChecker
             {
                 if (siteList[s].UpdatesCount > 0) IShouldDoSomething=true;
 
-                for (int n=treeView1.Nodes[s].Nodes.Count-siteList[s].UpdatesCount; n<treeView1.Nodes[s].Nodes.Count; n++)
+                //for (int n = treeView1.Nodes[s].Nodes.Count - siteList[s].UpdatesCount; n < treeView1.Nodes[s].Nodes.Count; n++)
+                for (int n = 0; n < siteList[s].UpdatesCount; n++)
                 {
                     if(EnableOpenInBrowser) openUrlInBrowser(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
                     s_names.Add(treeView1.Nodes[s].Nodes[n].Text);
                     s_links.Add(siteList[s].TopicDictionary[treeView1.Nodes[s].Nodes[n].Text]);
-                    treeView1.Nodes[s].Nodes[n].BackColor = Color.NavajoWhite;
+                    treeView1.Nodes[s].Nodes[n].BackColor = Color.LightGreen;
                 }
                 siteList[s].UpdatesCount = 0;
             }
@@ -189,6 +195,22 @@ namespace SharpForumChecker
             if (UpdCounter > 99) { UpdCounter = 0; toolStripProgress.Value = 0; }
 
         }
+        private void toolStripSplitBtnPlayPause_ButtonClick(object sender, EventArgs e)
+        {
+            if (timerSearch.Enabled)
+            {
+                toolStripSplitBtnPlayPause.Text = "Продолжить поиск";
+                toolStripSplitBtnPlayPause.Image = Properties.Resources.play;
+                timerSearch.Enabled = false;
+            }
+            else
+            {
+                toolStripSplitBtnPlayPause.Text = "Поставить на паузу";
+                toolStripSplitBtnPlayPause.Image = Properties.Resources.pause;
+                timerSearch.Enabled = true;
+            }
+
+        }
     #endregion
 
     #region открытие и закрытие приложения
@@ -199,7 +221,7 @@ namespace SharpForumChecker
             {
                 return;
             }
-            SitesIo.SaveToBin(siteList);
+            SitesIo.SaveToBin(siteList, Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath));
 
             //зберігаю налаштування
             try
@@ -212,6 +234,8 @@ namespace SharpForumChecker
                 bw.Write(EnableOpenInBrowser);
                 bw.Write(EnableSendMail);
                 bw.Write(EMailAdress);
+                bw.Write(MinimizeOnLaunch);
+                bw.Write(MinimizeToTray);
                 bw.Close();
             }
             catch (System.Exception ex)
@@ -223,7 +247,7 @@ namespace SharpForumChecker
         private void Form1_Load(object sender, EventArgs e)
         {
             //подтягую ліст сайтів
-            siteList = SitesIo.OpenBin();
+            siteList = SitesIo.OpenBin(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath));
             foreach (var site in siteList)
             {
                 treeView1.Nodes.Add(site.SiteName);
@@ -239,13 +263,16 @@ namespace SharpForumChecker
             try
             {
                 BinaryReader br = new BinaryReader(File.Open(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\settings.cfg", FileMode.Open));
-                UpdInterval = br.ReadInt16();
-                UpdRandom = br.ReadInt16();
-                EnableSoundAlert = br.ReadBoolean();
-                SoundFileName = br.ReadString();
-                EnableOpenInBrowser = br.ReadBoolean();
-                EnableSendMail = br.ReadBoolean();
-                EMailAdress = br.ReadString();
+                UpdInterval             = br.ReadInt16();
+                UpdRandom               = br.ReadInt16();
+                EnableSoundAlert        = br.ReadBoolean();
+                SoundFileName           = br.ReadString();
+                EnableOpenInBrowser     = br.ReadBoolean();
+                EnableSendMail          = br.ReadBoolean();
+                EMailAdress             = br.ReadString();
+                MinimizeOnLaunch        = br.ReadBoolean();
+                MinimizeToTray          = br.ReadBoolean();
+
                 timerSearch.Interval = UpdInterval * 600;
                 AlertPlayer = new SoundPlayer(SoundFileName);
                 br.Close();
@@ -332,10 +359,10 @@ namespace SharpForumChecker
     #region работа с окном настрoек
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings set = new Settings(this, UpdInterval, UpdRandom, EnableSoundAlert, SoundFileName, EnableOpenInBrowser, EnableSendMail, EMailAdress);
+            Settings set = new Settings(this, UpdInterval, UpdRandom, EnableSoundAlert, SoundFileName, EnableOpenInBrowser, EnableSendMail, EMailAdress, MinimizeOnLaunch, MinimizeToTray);
             set.Show();
         }
-        public void changeSettings(int interval, int randomizer, bool enableSound, string soundFN, bool enableOpenInBrowser, bool enableSendMail, string E_addr)
+        public void changeSettings(int interval, int randomizer, bool enableSound, string soundFN, bool enableOpenInBrowser, bool enableSendMail, string E_addr, bool minOnLaunch, bool minToTray)
         {
             UpdInterval = (Int16)interval;
             UpdRandom = (Int16)randomizer;
@@ -344,6 +371,8 @@ namespace SharpForumChecker
             EnableOpenInBrowser = enableOpenInBrowser;
             EnableSendMail = enableSendMail;
             EMailAdress = E_addr;
+            MinimizeOnLaunch = minOnLaunch;
+            MinimizeToTray = minToTray;
 
             AlertPlayer = new SoundPlayer(SoundFileName);
             timerSearch.Interval = UpdInterval * 600;
@@ -383,7 +412,31 @@ namespace SharpForumChecker
                 }
             }
         }
+
+        private void открытьВБраузереToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openUrlInBrowser(siteList[treeView1.SelectedNode.Index].SiteUri);
+        }
     #endregion
+
+    #region иконка в трее
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized && MinimizeToTray)
+            {
+                this.Hide();
+                notifyIcon.Visible = true;
+            }
+        }
+        private void notifyIcon_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+    #endregion
+
+
 
     }
 }

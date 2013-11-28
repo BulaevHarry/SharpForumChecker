@@ -15,7 +15,7 @@ namespace SharpForumChecker
         private Form1 parent_form;
         private string soundFileName;
 
-        public Settings(Form1 prnt, int intrvl, int rndm, bool playSound, string pathSound, bool openInBrows, bool sendMail, string mailAddr)
+        public Settings(Form1 prnt, int intrvl, int rndm, bool playSound, string pathSound, bool openInBrows, bool sendMail, string mailAddr, bool MinimizeOnLaunch, bool MinimizeToTray)
         {
             InitializeComponent();
             parent_form = prnt;
@@ -34,6 +34,24 @@ namespace SharpForumChecker
 
             cbSendMail.Checked = sendMail;
             tbMailAddr.Text = mailAddr;
+
+            try
+            {
+                Microsoft.Win32.RegistryKey Key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\", true);
+                if (Key.GetValue("ForumChecker").ToString() == System.Windows.Forms.Application.ExecutablePath)
+                {
+                    cbAutostart.Checked = true;
+                }
+                Key.Close();
+            }
+            catch (System.Exception ex)
+            {
+                cbAutostart.Enabled = false;
+                cbAutostart.Text += " (перезапустите с правами администратора)";
+            }
+
+            cbMinimizeOnLaunch.Checked = MinimizeOnLaunch;
+            cbMinimizeToTray.Checked = MinimizeToTray;
         }
     
     #region Проверка правильности ввода емейл адреса
@@ -61,7 +79,7 @@ namespace SharpForumChecker
         {
             if (isValid(tbMailAddr.Text) || !cbSendMail.Checked)
             {
-                parent_form.changeSettings(trackBar1.Value, trackBar2.Value, cbPlaySound.Checked, soundFileName, cbOpenInBrowser.Checked, cbSendMail.Checked, tbMailAddr.Text);
+                parent_form.changeSettings(trackBar1.Value, trackBar2.Value, cbPlaySound.Checked, soundFileName, cbOpenInBrowser.Checked, cbSendMail.Checked, tbMailAddr.Text, cbMinimizeOnLaunch.Checked, cbMinimizeToTray.Checked);
                 this.Close();
             }
             else
@@ -97,5 +115,25 @@ namespace SharpForumChecker
             }
         }
     #endregion
+
+    #region Автозапуск
+        private void cbAutostart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAutostart.Checked)
+            {
+                Microsoft.Win32.RegistryKey Key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\", true);
+                Key.SetValue("ForumChecker", System.Windows.Forms.Application.ExecutablePath);
+                Key.Close();
+            }
+            else
+            {
+                Microsoft.Win32.RegistryKey Key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\", true);
+                Key.DeleteValue("ForumChecker");
+                Key.Close();
+            }
+        }
+    #endregion
+
+        
     }
 }
