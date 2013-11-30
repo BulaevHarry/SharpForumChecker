@@ -2,4 +2,3 @@ C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonito
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\bin\Release\SiteMonitorInterface.pdb
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\obj\Release\SiteMonitorInterface.dll
 C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\obj\Release\SiteMonitorInterface.pdb
-C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SiteMonitorInterface\obj\Release\SiteMonitorInterface.csprojResolveAssemblyReference.cache

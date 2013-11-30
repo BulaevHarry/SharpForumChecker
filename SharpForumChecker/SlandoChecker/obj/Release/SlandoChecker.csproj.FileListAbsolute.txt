@@ -1,0 +1,10 @@
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\SlandoChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\SlandoChecker.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\HtmlAgilityPack.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\SiteMonitorInterface.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\SiteMonitorInterface.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\bin\Release\HtmlAgilityPack.xml
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\obj\Release\SlandoChecker.csprojResolveAssemblyReference.cache
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\obj\Release\SlandoChecker.dll
+C:\Users\Asazeus\Documents\GitHub\SharpForumChecker\SharpForumChecker\SlandoChecker\obj\Release\SlandoChecker.pdb

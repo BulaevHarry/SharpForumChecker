@@ -18,10 +18,12 @@ namespace SharpForumChecker
         Form1 parent_form;
         string[,] ZeroDayLinks;
         string[,] OverclockersLinks;
+        string[,] SlandoLinks;
         public int site_list_index;
 
         private const int ZERODAY_SIZE = 7;
         private const int OVERCLOCKERS_SIZE = 4;
+        private const int SLANDO_SIZE = 1;
 
         public AddSite(Form1 pf)
         {
@@ -53,6 +55,10 @@ namespace SharpForumChecker
             OverclockersLinks[1, 1] = "http://forum.overclockers.ua/viewforum.php?f=27";
             OverclockersLinks[2, 1] = "http://forum.overclockers.ua/viewforum.php?f=28";
             OverclockersLinks[3, 1] = "http://forum.overclockers.ua/viewforum.php?f=29";
+
+            SlandoLinks = new string[SLANDO_SIZE, 2];
+            SlandoLinks[0, 0] = "Недвижимость/Аренда квартир";
+            SlandoLinks[0, 1] = "http://kiev.ko.slando.ua/nedvizhimost/arenda-kvartir/";
         }
 
     #region Диалоговые кнопки
@@ -73,6 +79,7 @@ namespace SharpForumChecker
             {
                 case 0: site = ZeroDayLinks[lbThreads.SelectedIndex, 1]; break;
                 case 1: site = OverclockersLinks[lbThreads.SelectedIndex, 1]; break;
+                case 2: site = SlandoLinks[lbThreads.SelectedIndex, 1]; break;
                 default: return;
             }
             parent_form.addSiteIntoList(lbSites.SelectedIndex, tbName.Text, site, tbKeywords.Text);
@@ -90,6 +97,7 @@ namespace SharpForumChecker
             {
                 case 0: parent_form.editSiteInTheList(lbSites.SelectedIndex, site_list_index, tbName.Text, ZeroDayLinks[lbThreads.SelectedIndex, 1], tbKeywords.Text); break;
                 case 1: parent_form.editSiteInTheList(lbSites.SelectedIndex, site_list_index, tbName.Text, OverclockersLinks[lbThreads.SelectedIndex, 1], tbKeywords.Text); break;
+                case 2: parent_form.editSiteInTheList(lbSites.SelectedIndex, site_list_index, tbName.Text, SlandoLinks[lbThreads.SelectedIndex, 1], tbKeywords.Text); break;
             }
 
             this.Close();
@@ -99,19 +107,18 @@ namespace SharpForumChecker
     #region Клик по спискам, изменение ключевых слов
         private void LBsites_Click(object sender, EventArgs e)
         {
-            if (lbSites.SelectedIndex == 0)
+            switch (lbSites.SelectedIndex)
             {
-                lbThreads.Items.Clear();
-                for (int i = 0; i < ZERODAY_SIZE; i++)
-                {
-                    lbThreads.Items.Add(ZeroDayLinks[i, 0]);
-                }
-                /*if (!button3.Visible) { */
-                tbName.Text = "0day -";/* }*/
-            }
-            else
-                if (lbSites.SelectedIndex == 1)
-                {
+            case 0:
+                    lbThreads.Items.Clear();
+                    for (int i = 0; i < ZERODAY_SIZE; i++)
+                    {
+                        lbThreads.Items.Add(ZeroDayLinks[i, 0]);
+                    }
+                    /*if (!button3.Visible) { */
+                    tbName.Text = "0day -";/* }*/
+            	break;
+            case 1:
                     lbThreads.Items.Clear();
                     for (int i = 0; i < OVERCLOCKERS_SIZE; i++)
                     {
@@ -119,20 +126,30 @@ namespace SharpForumChecker
                     }
                     /*if (!button3.Visible) { */
                     tbName.Text = "Overcklockers -";/* }*/
-                }
+                break;
+            case 2: 
+                    lbThreads.Items.Clear();
+                    for (int i = 0; i < SLANDO_SIZE; i++)
+                    {
+                        lbThreads.Items.Add(SlandoLinks[i, 0]);
+                    }
+                    /*if (!button3.Visible) { */
+                    tbName.Text = "Slando Киев-";/* }*/
+                break; 
+            }
+
         }
         private void lbThreads_Click(object sender, EventArgs e)
         {
-            /*if (button3.Visible) return;*/
-            if (lbSites.SelectedIndex == 0)
+            switch (lbSites.SelectedIndex)
             {
-                tbName.Text = "0day - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
+                case 0: tbName.Text = "0day - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
+                    break;
+                case 1: tbName.Text = "Overcklockers - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
+                    break;
+                case 2: tbName.Text = "Slando Киев - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
+                    break;
             }
-            else
-                if (lbSites.SelectedIndex == 1)
-                {
-                    tbName.Text = "Overcklockers - " + lbThreads.Items[lbThreads.SelectedIndex].ToString() + " - [" + tbKeywords.Text + "]";
-                }
         }
         private void tbKeywords_TextChanged(object sender, EventArgs e)
         {
@@ -165,8 +182,19 @@ namespace SharpForumChecker
                     return;
                 }
             }
+            for (int i = 0; i < SLANDO_SIZE; i++)
+            {
+                if (SlandoLinks[i, 1] == link)
+                {
+                    lbSites.SetSelected(2, true);
+                    LBsites_Click(this, new EventArgs());
+                    lbThreads.SetSelected(i, true);
+                    lbThreads_Click(this, new EventArgs());
+                    return;
+                }
+            }
         }
     #endregion
-        
+
     }
 }

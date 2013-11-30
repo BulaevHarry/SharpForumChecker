@@ -47,9 +47,9 @@
             this.cbPlaySound = new System.Windows.Forms.CheckBox();
             this.selectFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cbAutostart = new System.Windows.Forms.CheckBox();
-            this.cbMinimizeOnLaunch = new System.Windows.Forms.CheckBox();
             this.cbMinimizeToTray = new System.Windows.Forms.CheckBox();
+            this.cbMinimizeOnLaunch = new System.Windows.Forms.CheckBox();
+            this.cbAutostart = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -245,6 +245,27 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             // 
+            // cbMinimizeToTray
+            // 
+            this.cbMinimizeToTray.AutoSize = true;
+            this.cbMinimizeToTray.Location = new System.Drawing.Point(6, 65);
+            this.cbMinimizeToTray.Name = "cbMinimizeToTray";
+            this.cbMinimizeToTray.Size = new System.Drawing.Size(189, 17);
+            this.cbMinimizeToTray.TabIndex = 2;
+            this.cbMinimizeToTray.Text = " Сворачивать в системный трей";
+            this.cbMinimizeToTray.UseVisualStyleBackColor = true;
+            // 
+            // cbMinimizeOnLaunch
+            // 
+            this.cbMinimizeOnLaunch.AutoSize = true;
+            this.cbMinimizeOnLaunch.Enabled = false;
+            this.cbMinimizeOnLaunch.Location = new System.Drawing.Point(6, 42);
+            this.cbMinimizeOnLaunch.Name = "cbMinimizeOnLaunch";
+            this.cbMinimizeOnLaunch.Size = new System.Drawing.Size(248, 17);
+            this.cbMinimizeOnLaunch.TabIndex = 1;
+            this.cbMinimizeOnLaunch.Text = " Сворачивать окно при запуске программы";
+            this.cbMinimizeOnLaunch.UseVisualStyleBackColor = true;
+            // 
             // cbAutostart
             // 
             this.cbAutostart.AutoSize = true;
@@ -255,26 +276,6 @@
             this.cbAutostart.Text = "Запускать при старте системы";
             this.cbAutostart.UseVisualStyleBackColor = true;
             this.cbAutostart.CheckedChanged += new System.EventHandler(this.cbAutostart_CheckedChanged);
-            // 
-            // cbMinimizeOnLaunch
-            // 
-            this.cbMinimizeOnLaunch.AutoSize = true;
-            this.cbMinimizeOnLaunch.Location = new System.Drawing.Point(6, 42);
-            this.cbMinimizeOnLaunch.Name = "cbMinimizeOnLaunch";
-            this.cbMinimizeOnLaunch.Size = new System.Drawing.Size(248, 17);
-            this.cbMinimizeOnLaunch.TabIndex = 1;
-            this.cbMinimizeOnLaunch.Text = " Сворачивать окно при запуске программы";
-            this.cbMinimizeOnLaunch.UseVisualStyleBackColor = true;
-            // 
-            // cbMinimizeToTray
-            // 
-            this.cbMinimizeToTray.AutoSize = true;
-            this.cbMinimizeToTray.Location = new System.Drawing.Point(6, 65);
-            this.cbMinimizeToTray.Name = "cbMinimizeToTray";
-            this.cbMinimizeToTray.Size = new System.Drawing.Size(189, 17);
-            this.cbMinimizeToTray.TabIndex = 2;
-            this.cbMinimizeToTray.Text = " Сворачивать в системный трей";
-            this.cbMinimizeToTray.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -290,7 +291,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Настройки";
+            this.Text = "Монитор объявлений - Настройки";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

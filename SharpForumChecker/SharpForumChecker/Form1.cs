@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using SiteMonitorInterface;
 using ZeroDayChecker;
 using OverlockersChecker;
+using SlandoChecker;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Media;
@@ -91,7 +92,7 @@ namespace SharpForumChecker
             client.Timeout = 10000;
 
             string from = "robot.forum.checker@gmail.com";
-            string to = "aso.asa7elo@gmail.com";
+            string to = EMailAdress;
             string subject = "ForumChecker notification";
             string body = "Привет, анонимус! \nПриложение ForumChecker нашло для тебя новые интересности!\n\n";
 
@@ -174,8 +175,10 @@ namespace SharpForumChecker
         }
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
-            UpdCounter = 0;
+            UpdCounter = 1;
             toolStripProgress.Value = 0;
+            toolStripProgress.PerformStep();
+            performCheck();
         }
         private void timerSearch_Tick(object sender, EventArgs e)
         {
@@ -199,13 +202,13 @@ namespace SharpForumChecker
         {
             if (timerSearch.Enabled)
             {
-                toolStripSplitBtnPlayPause.Text = "Продолжить поиск";
+                toolStripSplitBtnPlayPause.Text = "Продолжить поиски";
                 toolStripSplitBtnPlayPause.Image = Properties.Resources.play;
                 timerSearch.Enabled = false;
             }
             else
             {
-                toolStripSplitBtnPlayPause.Text = "Поставить на паузу";
+                toolStripSplitBtnPlayPause.Text = "Приостановить поиски";
                 toolStripSplitBtnPlayPause.Image = Properties.Resources.pause;
                 timerSearch.Enabled = true;
             }
@@ -282,6 +285,14 @@ namespace SharpForumChecker
                 MessageBox.Show("Не удалось загрузить настройки.");
             }
 
+            bool onlyInstance;
+            System.Threading.Mutex mtx = new System.Threading.Mutex(true, "AppName", out onlyInstance);
+            if (!onlyInstance)
+            {
+                MessageBox.Show("Запуск второй копии приложения ForumChecker недопустим!");
+                this.Close();
+            }
+
         }
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -302,6 +313,7 @@ namespace SharpForumChecker
             {
                 case 0: site = new Checker0day(); break;
                 case 1: site = new CheckerOverlockers(); break;
+                case 2: site = new CheckerSlando(); break;
                 default: return;
             }
 
@@ -333,6 +345,7 @@ namespace SharpForumChecker
             {
                 case 0: site = new Checker0day(); break;
                 case 1: site = new CheckerOverlockers(); break;
+                case 2: site = new CheckerSlando(); break; 
                 default: return;
             }
 
@@ -360,7 +373,7 @@ namespace SharpForumChecker
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings set = new Settings(this, UpdInterval, UpdRandom, EnableSoundAlert, SoundFileName, EnableOpenInBrowser, EnableSendMail, EMailAdress, MinimizeOnLaunch, MinimizeToTray);
-            set.Show();
+            set.ShowDialog();
         }
         public void changeSettings(int interval, int randomizer, bool enableSound, string soundFN, bool enableOpenInBrowser, bool enableSendMail, string E_addr, bool minOnLaunch, bool minToTray)
         {
@@ -394,7 +407,7 @@ namespace SharpForumChecker
                 int lv1i = treeView1.SelectedNode.Index;
                 string lv1t = treeView1.SelectedNode.Text;
                 openUrlInBrowser(siteList[lv0i].TopicDictionary[lv1t]);
-
+                //MessageBox.Show(siteList[lv0i].TopicDictionary[lv1t]);
             }
 
         }

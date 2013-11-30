@@ -161,11 +161,12 @@
     <None Include="Resources\remove.ico" />
     <None Include="Resources\edit.ico" />
     <None Include="Resources\add.ico" />
-    <None Include="bin\Release\Audio\alert2.wav" />
+    <Content Include="Resources\alert.wav" />
     <Content Include="Resources\app.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\Audio\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OverlockersChecker\OverlockersChecker.csproj">
@@ -175,6 +176,10 @@
     <ProjectReference Include="..\SiteMonitorInterface\SiteMonitorInterface.csproj">
       <Project>{626EEBC8-2A25-417B-B3D9-5B54ED08BF28}</Project>
       <Name>SiteMonitorInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlandoChecker\SlandoChecker.csproj">
+      <Project>{BF7921DF-B9C6-442B-A6DE-9B4B5A9B54A5}</Project>
+      <Name>SlandoChecker</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZeroDayChecker\ZeroDayChecker.csproj">
       <Project>{A91A06B8-4DEF-494C-9758-C00C5C72E954}</Project>
