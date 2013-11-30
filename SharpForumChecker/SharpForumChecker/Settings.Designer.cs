@@ -258,7 +258,6 @@
             // cbMinimizeOnLaunch
             // 
             this.cbMinimizeOnLaunch.AutoSize = true;
-            this.cbMinimizeOnLaunch.Enabled = false;
             this.cbMinimizeOnLaunch.Location = new System.Drawing.Point(6, 42);
             this.cbMinimizeOnLaunch.Name = "cbMinimizeOnLaunch";
             this.cbMinimizeOnLaunch.Size = new System.Drawing.Size(248, 17);

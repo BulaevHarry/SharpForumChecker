@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -161,6 +161,8 @@
     <None Include="Resources\remove.ico" />
     <None Include="Resources\edit.ico" />
     <None Include="Resources\add.ico" />
+    <Content Include="app.ico" />
+    <Content Include="app2.ico" />
     <Content Include="Resources\alert.wav" />
     <Content Include="Resources\app.ico" />
   </ItemGroup>

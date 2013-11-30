@@ -18,6 +18,7 @@ using System.Web;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Threading;
 
 namespace SharpForumChecker
 {
@@ -246,6 +247,7 @@ namespace SharpForumChecker
                 MessageBox.Show("Не удалось сохранить настройки.");
             }
 
+            notifyIcon.Visible = false;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -293,10 +295,16 @@ namespace SharpForumChecker
                 this.Close();
             }
 
+            if (MinimizeOnLaunch)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                Form1_Resize(sender,e);
+            }
         }
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
+            //this.Close();
         }
     #endregion
 
@@ -438,6 +446,7 @@ namespace SharpForumChecker
             if (this.WindowState == FormWindowState.Minimized && MinimizeToTray)
             {
                 this.Hide();
+                this.ShowInTaskbar = false;
                 notifyIcon.Visible = true;
             }
         }
@@ -445,11 +454,10 @@ namespace SharpForumChecker
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
             notifyIcon.Visible = false;
         }
     #endregion
-
-
 
     }
 }
