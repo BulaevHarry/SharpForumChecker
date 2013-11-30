@@ -44,10 +44,13 @@ namespace SharpForumChecker
                 }
                 Key.Close();
             }
-            catch (System.Exception ex)
+            catch (System.Security.SecurityException ex)
             {
                 cbAutostart.Enabled = false;
                 cbAutostart.Text += " (перезапустите с правами администратора)";
+            }
+            catch (System.NullReferenceException ex)
+            {
             }
 
             cbMinimizeOnLaunch.Checked = MinimizeOnLaunch;
@@ -133,6 +136,7 @@ namespace SharpForumChecker
             }
         }
     #endregion
+
 
 
         

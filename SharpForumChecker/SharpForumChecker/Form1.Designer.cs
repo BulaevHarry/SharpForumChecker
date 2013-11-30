@@ -174,8 +174,8 @@
             // 
             this.добавитьСайтToolStripMenuItem.Image = global::SharpForumChecker.Properties.Resources.sites;
             this.добавитьСайтToolStripMenuItem.Name = "добавитьСайтToolStripMenuItem";
-            this.добавитьСайтToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
-            this.добавитьСайтToolStripMenuItem.Text = "Добавить сайт";
+            this.добавитьСайтToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.добавитьСайтToolStripMenuItem.Text = "Добавить поиск";
             this.добавитьСайтToolStripMenuItem.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // настройкиToolStripMenuItem
