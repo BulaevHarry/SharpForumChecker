@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
 using SiteMonitorInterface;
+using System.Text.RegularExpressions;
 
 namespace ZeroDayChecker
 {
@@ -61,9 +62,14 @@ namespace ZeroDayChecker
                     bool keyw = false;
                     foreach (string str in _keywords)
                     {
-                        if (topicText.Contains(str))
+                        RegexOptions option = RegexOptions.IgnoreCase;
+                        Regex newReg = new Regex(@str, option);
+                        MatchCollection matches = newReg.Matches(topicText);
+
+                        if (matches.Count>0)
                         {
                             keyw = true;
+                            break;
                         }
                     }
                     if (keyw)

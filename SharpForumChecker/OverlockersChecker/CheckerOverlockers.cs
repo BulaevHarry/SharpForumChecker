@@ -5,6 +5,7 @@ using System.Text;
 using HtmlAgilityPack;
 using SiteMonitorInterface;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace OverlockersChecker
 {
@@ -62,9 +63,14 @@ namespace OverlockersChecker
                     bool keyw = false;
                     foreach (string str in _keywords)
                     {
-                        if (a.InnerText.Contains(str))
+                        RegexOptions option = RegexOptions.IgnoreCase;
+                        Regex newReg = new Regex(@str, option);
+                        MatchCollection matches = newReg.Matches(a.InnerText);
+
+                        if (matches.Count > 0)
                         {
                             keyw = true;
+                            break;
                         }
                     }
                     if (keyw)
