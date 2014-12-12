@@ -231,7 +231,7 @@ namespace SharpForumChecker
                 _link += treeSlandoReg.SelectedNode.Tag.ToString() + ".";
                 _link += treeSlandoReg.SelectedNode.Parent.Tag.ToString() + ".";
             }
-            _link += "slando.ua/";
+            _link += "olx.ua/";
             if (treeSlando.SelectedNode.Level >= 2)
             {
                 _link += treeSlando.SelectedNode.Parent.Parent.Tag.ToString() + "/";

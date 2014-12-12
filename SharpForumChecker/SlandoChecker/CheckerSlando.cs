@@ -51,7 +51,7 @@ namespace SlandoChecker
                 return TopicDictionary; 
             }
 
-            HtmlNodeCollection aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td/div/h3/a");
+            HtmlNodeCollection aList = _htmlDoc.DocumentNode.SelectNodes("//tr/td/h3/a");
             if (aList == null) { return TopicDictionary; }
             
             foreach (HtmlNode a in aList)
